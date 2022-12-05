@@ -3,7 +3,7 @@
 namespace Invoice.Domain.ItemAgg;
 public interface IItemRepository : IBaseRepository<long, Item>
 {
-    List<ItemViewModel> GetItems();
+    List<ItemDto> GetItems();
     EditItem GetDetails(long id);
 
 }

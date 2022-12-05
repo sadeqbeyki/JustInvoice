@@ -7,4 +7,6 @@ public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity, new(
     IQueryable<TEntity> GetAll();
     TEntity Update(TEntity entity);
     void Delete(int key);
+    void SaveChanges();
+
 }

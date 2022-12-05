@@ -11,7 +11,7 @@ public class IndexModel : PageModel
     private readonly IItemApplication _itemApplication;
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
-    public List<ItemViewModel> Items { get; set; }
+    public List<ItemDto> Items { get; set; }
 
 
     public IndexModel(IItemApplication itemApplication,

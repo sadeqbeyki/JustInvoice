@@ -25,9 +25,9 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
             }).FirstOrDefault(x => x.Id == id);
     }
 
-    public List<FactorViewModel> GetFactors()
+    public List<FactorDto> GetFactors()
     {
-        return _invoiceContext.Factors.Select(c => new FactorViewModel
+        return _invoiceContext.Factors.Select(c => new FactorDto
         {
             Id = c.Id,
             Name = c.Name,

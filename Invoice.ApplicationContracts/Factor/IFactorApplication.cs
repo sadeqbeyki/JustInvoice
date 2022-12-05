@@ -1,14 +1,13 @@
 ﻿using AppFramework;
-using Invoice.ApplicationContracts.Items;
 
 namespace Invoice.ApplicationContracts.Factor;
 
 public interface IFactorApplication
 {
-    OperationResult Create(CreateFactor commandFactor);
-    OperationResult Edit(EditFactor command);
-    EditFactor? GetDetails(long id);
-    List<FactorViewModel> GetFactors();
+    OperationResult Create(FactorDto command);
+    OperationResult Edit(FactorDto command);
+    FactorDto? GetDetails(long id);
+    List<FactorDto> GetFactors();
     void Delete(int key);
 
 }

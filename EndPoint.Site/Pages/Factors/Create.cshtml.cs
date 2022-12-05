@@ -3,10 +3,10 @@ using Invoice.ApplicationContracts.Factor;
 using Invoice.ApplicationContracts.Items;
 using Invoice.ApplicationContracts.Products;
 using Invoice.ApplicationContracts.Units;
-using Invoice.Domain.ItemAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace EndPoint.Site.Pages.Factors;
 
@@ -14,7 +14,7 @@ public class CreateModel : PageModel
 {
     public SelectList Units;
     public SelectList Products;
-    public CreateFactor Command;
+    public ItemDto Items;
 
     private readonly IFactorApplication _factorApplication;
     private readonly IItemApplication _itemApplication;
@@ -37,26 +37,30 @@ public class CreateModel : PageModel
 
     public void OnGet()
     {
-        //Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
-        //Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
+        Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+        Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
 
-        FactorViewModel viewModel = new()
-        {
-            Items = new List<ItemViewModel>()
-        };
-        Item row1 = new();
-        Item row2 = new();
-        Item row3 = new();
-        viewModel.CreationDate = DateTime.Now.ToFarsi();
-        viewModel.Items.Add(row1);
-        viewModel.Items.Add(row2);
-        viewModel.Items.Add(row3);
-        return ViewResult(viewModel);
+        //FactorDto factorDto = new()
+        //{
+        //    Items = new List<ItemDto>()
+        //};
+
+        //ItemDto row1 = new();
+        //ItemDto row2 = new();
+        //ItemDto row3 = new();
+        //factorDto.CreationDate = DateTime.Now.ToFarsi();
+        //factorDto.Items.Add(row1);
+        //factorDto.Items.Add(row2);
+        //factorDto.Items.Add(row3);
+        //return Page();
 
     }
-    public IActionResult OnPost(CreateFactor factorModel, CreateItem itemModel)
+    [BindProperty]
+    public FactorDto? Command { get; set; }
+
+    public async Task<IActionResult> OnPostAsync()
     {
-        _factorApplication.Create(factorModel, itemModel);
+        _factorApplication.Create(Command);
         return RedirectToPage("./Index");
     }
 }

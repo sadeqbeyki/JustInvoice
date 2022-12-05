@@ -2,14 +2,13 @@
 @model EndPoint.Site.Pages.Factors.IndexModel
 
 @{
-    Layout = "Shared/_Layout";
     ViewData["Title"] = "فاکتور کالا";
 }
 
 
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
+        <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
             <a class="btn btn-success btn-lg" asp-page="./Create">ایجاد فاکتور جدید</a>
         </p>
@@ -18,57 +17,62 @@
 
 
 <table class="table table-bordered table-striped">
-    <tbody>
-        <tr>
-            <th>تاریخ ایجاد</th>
-            <th>توضیحات</th>
-        </tr>
-        <tr>
-@*            <td>@Model.Factors.CreationDate</td>
-            <td>@Model.Factors.Description</td>
-            <td>@Model.Factors.Name</td>
-            <td>@Model.Factors.total</td>*@
-        </tr>
-    </tbody>
-</table>
-
-
-<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>#</th>
-            <th>نام </th>
+            <th>عنوان</th>
+            <th>تاریخ</th>
+            <th>توضیحات</th>
+        </tr>
+
+        <tr>
+            <th>نام کالا</th>
             <th>واحد</th>
             <th>قیمت</th>
             <th>تعداد</th>
             <th>جمع</th>
-
-            <th>عملیات</th>
         </tr>
 
+        <tr>
+            <th>مبلغ کل</th>
+            <th>عملیات</th>
+        </tr>
     </thead>
+
     <tbody>
-        @foreach (var item in Model.Factors)
+        @foreach (var factor in Model.Factors)
         {
             <tr>
-                <td>@item.Id</td>
-@*                <td>@item.ProductName</td>
-                <td>@item.UnitName</td>
-                <td>@item.Price</td>
-                <td>@item.Count</td>
-                <td>@item.Sum</td>*@
+                <td>@factor.Id</td>
+                <td>@factor.CreationDate</td>
+                <td>@factor.Description</td>
+                <td>@factor.Name</td>
+            </tr>
+
+            @foreach (var item in factor.Items)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.UnitName</td>
+                    <td>@item.Price</td>
+                    <td>@item.Count</td>
+                    <td>@item.Sum</td>
+                </tr>
+            }
+
+            <tr>
+                <td>@factor.Total</td>
                 <td>
-                    <a class="btn btn-warning pull-right m-rl-5" asp-page="./Edit" asp-route-id="@item.Id">
+                    <a class="btn btn-warning pull-right m-rl-5" asp-page="./Edit" asp-route-id="@factor.Id">
                         <i class="fa fa-edit"></i> ویرایش
                     </a>
                     |
-                    <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@item.Id"
+                    <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@factor.Id"
                    class="btn btn-danger btn-custom waves-effect waves-light m-b-5">حذف</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
 
 

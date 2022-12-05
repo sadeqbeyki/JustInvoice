@@ -20,27 +20,22 @@ public class ItemRepository : BaseRepository<long, Item>, IItemRepository
             .Select(x => new EditItem()
             {
                 Id = x.Id,
-                //Name = x.Name,
                 Price = x.Price,
                 Count = x.Count,
                 Sum = x.Sum,
-                //Description = x.Description,
-
             }).FirstOrDefault(x => x.Id == id);
     }
 
-    public List<ItemViewModel> GetItems()
+    public List<ItemDto> GetItems()
     {
-        return _invoiceContext.Items.Select(c => new ItemViewModel
+        return _invoiceContext.Items.Select(c => new ItemDto
         {
             Id = c.Id,
             ProductName = c.ProductName.Name.ToString(),
             UnitName = c.UnitName.Name.ToString(),
-            //Name = c.Name,
             Price = c.Price,
             Count = c.Count,
             Sum = c.Sum,
-            //Description = c.Description,
             CreationDate = c.CreationDate.ToFarsi()
         }).ToList();
     }

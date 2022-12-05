@@ -1,6 +1,5 @@
 ﻿using AppFramework;
 using Invoice.ApplicationContracts.Factor;
-using Invoice.ApplicationContracts.Items;
 using Invoice.Domain.FactorAgg;
 using Invoice.Domain.ItemAgg;
 
@@ -18,32 +17,32 @@ public class FactorApplication : IFactorApplication
         _itemRepository = itemRepository;
     }
 
-    public OperationResult Create(CreateFactor commandFactor)
+    public OperationResult Create(FactorDto command)
     {
         OperationResult operation = new();
         Factor factor = new()
         {
-            Id = commandFactor.Id,
-            Name = commandFactor.Name,
-            Total = commandFactor.Total,
-            Description = commandFactor.Description,
+            Id = command.Id,
+            Name = command.Name,
+            Total = command.Total,
+            Description = command.Description,
         };
+        _factorRepository.Create(factor);
 
-        foreach (var item in commandFactor.Items)
+        foreach (var item in factor.Items)
         {
             Item factorItem = new()
             {
                 FactorId = item.Id,
                 Price = item.Price,
                 Count = item.Count,
-                Sum = item.Sum,
+                Sum = item.Price * item.Count,
                 ProductId = item.ProductId,
                 UnitId = item.UnitId,
             };
+            _itemRepository.Create(factorItem);
         }
-
-        _factorRepository.Create(factor);
-        //_itemRepository.Create(factorItem);
+        _factorRepository.SaveChanges();
         return operation.Succeeded();
     }
 
@@ -52,7 +51,7 @@ public class FactorApplication : IFactorApplication
         _factorRepository.Delete(key);
     }
 
-    public OperationResult Edit(EditFactor command)
+    public OperationResult Edit(FactorDto command)
     {
         OperationResult operation = new();
         var factor = _factorRepository.Get(command.Id);
@@ -67,13 +66,13 @@ public class FactorApplication : IFactorApplication
         return operation.Succeeded();
     }
 
-    public EditFactor? GetDetails(long id)
+    public FactorDto? GetDetails(long id)
     {
         return _factorRepository.GetDetails(id);
     }
 
 
-    public List<FactorViewModel> GetFactors()
+    public List<FactorDto> GetFactors()
     {
         return _factorRepository.GetFactors();
     }

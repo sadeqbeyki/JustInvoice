@@ -18,13 +18,11 @@ public class ItemApplication : IItemApplication
         OperationResult operation = new();
         Item item = new()
         {
-            //Name = command.Name,
             ProductId = command.ProductId,
             UnitId = command.UnitId,
             Price = command.Price,
             Count = command.Count,
             Sum = command.Count * command.Price,
-            //Description = command.Description,
         };
         _itemRepository.Create(item);
         return operation.Succeeded();
@@ -60,7 +58,7 @@ public class ItemApplication : IItemApplication
     }
 
 
-    public List<ItemViewModel> GetItems()
+    public List<ItemDto> GetItems()
     {
         return _itemRepository.GetItems();
     }

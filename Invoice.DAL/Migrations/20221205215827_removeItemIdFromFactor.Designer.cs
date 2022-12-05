@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.DAL.Migrations
 {
     [DbContext(typeof(InvoiceContext))]
-    [Migration("20221205081736_initialThree")]
-    partial class initialThree
+    [Migration("20221205215827_removeItemIdFromFactor")]
+    partial class removeItemIdFromFactor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,6 @@ namespace Invoice.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ItemId")

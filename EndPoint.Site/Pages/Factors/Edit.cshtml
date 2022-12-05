@@ -1,5 +1,4 @@
-﻿@using ServiceHost.Areas.Administration.Pages.Blog.Articles
-@model EditModel
+﻿@model EditModel
 @{
     ViewData["Title"] = "ویرایش فاکتور ";
 }
@@ -20,13 +19,13 @@
                                 <span asp-validation-for="Command.Name" class="error"></span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+@*                        <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Command.CreationDate" class="control-label">تاریخ انتشار</label>
                                 <input class="form-control persianDateInput" asp-for="Command.CreationDate">
                                 <span asp-validation-for="Command.CreationDate" class="error"></span>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
 
                     <div class="row">

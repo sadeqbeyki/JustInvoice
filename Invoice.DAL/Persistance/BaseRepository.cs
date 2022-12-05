@@ -16,7 +16,7 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
     public TEntity Create(TEntity entity)
     {
         _dbContext.Set<TEntity>().Add(entity);
-        _dbContext.SaveChanges();
+        //_dbContext.SaveChanges();
         return entity;
     }
     public TEntity? Get(TKey key)
@@ -44,5 +44,10 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
         };
         _dbContext.Remove(entity);
         _dbContext.SaveChanges();
+    }
+
+    public void SaveChanges()
+    {
+        _dbContext.SaveChangesAsync();
     }
 }
