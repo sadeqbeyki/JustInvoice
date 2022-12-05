@@ -1,0 +1,48 @@
+﻿@model EndPoint.Site.Pages.Factors.CreateModel
+@{
+    ViewData["Title"] = "ایجاد فاکتور جدید";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ایجاد فاکتور جدید</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.Name" class="control-label">نام</label>
+                                <input type="text" class="form-control" asp-for="Command.Name">
+                                <span asp-validation-for="Command.Name" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Command.CreationDate" class="control-label">تاریخ انتشار</label>
+                                <input class="form-control persianDateInput" asp-for="Command.CreationDate">
+                                <span asp-validation-for="Command.CreationDate" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group no-margin">
+                                <label asp-for="Command.Description" class="control-label">توضیحات </label>
+                                <textarea class="form-control autogrow" asp-for="Command.Description"
+                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                <span asp-validation-for="Command.Description" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-b-5">ایجاد</button>
+                    <a asp-page="./Index" class="btn btn-dark waves-effect waves-light m-b-5">بازگشت</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

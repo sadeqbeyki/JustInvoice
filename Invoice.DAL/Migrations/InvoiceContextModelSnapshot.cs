@@ -22,6 +22,36 @@ namespace Invoice.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Invoice.Domain.FactorAgg.Factor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ItemId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Total")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Factors", (string)null);
+                });
+
             modelBuilder.Entity("Invoice.Domain.ItemAgg.Item", b =>
                 {
                     b.Property<long>("Id")
@@ -36,13 +66,8 @@ namespace Invoice.DAL.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("FactorId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("Price")
                         .HasColumnType("bigint");
@@ -53,13 +78,12 @@ namespace Invoice.DAL.Migrations
                     b.Property<long>("Sum")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("Total")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("UnitId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FactorId");
 
                     b.HasIndex("ProductId");
 
@@ -110,6 +134,12 @@ namespace Invoice.DAL.Migrations
 
             modelBuilder.Entity("Invoice.Domain.ItemAgg.Item", b =>
                 {
+                    b.HasOne("Invoice.Domain.FactorAgg.Factor", "FactorName")
+                        .WithMany("Items")
+                        .HasForeignKey("FactorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Invoice.Domain.ProductAgg.Product", "ProductName")
                         .WithMany("Items")
                         .HasForeignKey("ProductId")
@@ -122,9 +152,16 @@ namespace Invoice.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("FactorName");
+
                     b.Navigation("ProductName");
 
                     b.Navigation("UnitName");
+                });
+
+            modelBuilder.Entity("Invoice.Domain.FactorAgg.Factor", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Invoice.Domain.ProductAgg.Product", b =>

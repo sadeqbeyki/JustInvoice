@@ -5,6 +5,10 @@ namespace Invoice.Domain.FactorAgg
 {
     public class Factor : BaseEntity
     {
+        public Factor()
+        {
+            Items = new List<Item>();
+        }
         public string Name { get; set; }
         public long Total { get; set; }
         public string Description { get; set; }

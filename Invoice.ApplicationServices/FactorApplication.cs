@@ -9,22 +9,41 @@ namespace Invoice.ApplicationServices;
 public class FactorApplication : IFactorApplication
 {
     private readonly IFactorRepository _factorRepository;
+    private readonly IItemRepository _itemRepository;
 
-    public FactorApplication(IFactorRepository factorRepository)
+    public FactorApplication(IFactorRepository factorRepository,
+        IItemRepository itemRepository)
     {
         _factorRepository = factorRepository;
+        _itemRepository = itemRepository;
     }
 
-    public OperationResult Create(CreateFactor command)
+    public OperationResult Create(CreateFactor commandFactor)
     {
         OperationResult operation = new();
         Factor factor = new()
         {
-            Name = command.Name,
-            Total = command.Total,
-            Description = command.Description,
+            Id = commandFactor.Id,
+            Name = commandFactor.Name,
+            Total = commandFactor.Total,
+            Description = commandFactor.Description,
         };
+
+        foreach (var item in commandFactor.Items)
+        {
+            Item factorItem = new()
+            {
+                FactorId = item.Id,
+                Price = item.Price,
+                Count = item.Count,
+                Sum = item.Sum,
+                ProductId = item.ProductId,
+                UnitId = item.UnitId,
+            };
+        }
+
         _factorRepository.Create(factor);
+        //_itemRepository.Create(factorItem);
         return operation.Succeeded();
     }
 

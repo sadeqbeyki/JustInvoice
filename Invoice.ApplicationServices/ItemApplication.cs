@@ -18,13 +18,13 @@ public class ItemApplication : IItemApplication
         OperationResult operation = new();
         Item item = new()
         {
-            Name = command.Name,
+            //Name = command.Name,
             ProductId = command.ProductId,
             UnitId = command.UnitId,
             Price = command.Price,
             Count = command.Count,
             Sum = command.Count * command.Price,
-            Description = command.Description,
+            //Description = command.Description,
         };
         _itemRepository.Create(item);
         return operation.Succeeded();
@@ -42,13 +42,13 @@ public class ItemApplication : IItemApplication
         if (item != null)
         {
             item.Id = command.Id;
-            item.Name = command.Name;
+            //item.Name = command.Name;
             item.ProductId = command.ProductId;
             item.UnitId = command.UnitId;
             item.Price = command.Price;
             item.Count = command.Count;
             item.Sum = command.Count*command.Price;
-            item.Description = command.Description;
+            //item.Description = command.Description;
         }
         _itemRepository.Update(item);
         return operation.Succeeded();
