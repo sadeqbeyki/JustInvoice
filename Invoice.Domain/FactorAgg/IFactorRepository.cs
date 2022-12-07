@@ -3,7 +3,7 @@
 namespace Invoice.Domain.FactorAgg;
 public interface IFactorRepository : IBaseRepository<long, Factor>
 {
-    List<FactorDto> GetFactors();
+    List<FactorItemDto> GetFactors();
     EditFactor GetDetails(long id);
 
 }

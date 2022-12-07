@@ -56,7 +56,7 @@ public class CreateModel : PageModel
 
     }
     [BindProperty]
-    public FactorDto? Command { get; set; }
+    public FactorItemDto? Command { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {

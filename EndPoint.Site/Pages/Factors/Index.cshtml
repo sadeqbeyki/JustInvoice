@@ -17,49 +17,45 @@
 
 
 <table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>عنوان</th>
-            <th>تاریخ</th>
-            <th>توضیحات</th>
-        </tr>
-
-        <tr>
-            <th>نام کالا</th>
-            <th>واحد</th>
-            <th>قیمت</th>
-            <th>تعداد</th>
-            <th>جمع</th>
-        </tr>
-
-        <tr>
-            <th>مبلغ کل</th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-
     <tbody>
         @foreach (var factor in Model.Factors)
         {
             <tr>
+                <th>#</th>
+                <th>عنوان</th>
+                <th>تاریخ</th>
+                <th>توضیحات</th>
+            </tr>
+            <tr>
                 <td>@factor.Id</td>
+                <td>@factor.Name</td>
                 <td>@factor.CreationDate</td>
                 <td>@factor.Description</td>
-                <td>@factor.Name</td>
             </tr>
 
-            @foreach (var item in factor.Items)
+@*            @foreach (var item in factor.Items)
             {
                 <tr>
+                    <th>#</th>
+                    <th>نام کالا</th>
+                    <th>واحد</th>
+                    <th>قیمت</th>
+                    <th>تعداد</th>
+                    <th>جمع</th>
+                </tr>
+                <tr>
+                    <td>@item.Id</td>
                     <td>@item.ProductName</td>
                     <td>@item.UnitName</td>
                     <td>@item.Price</td>
                     <td>@item.Count</td>
                     <td>@item.Sum</td>
                 </tr>
-            }
-
+            }*@
+            <tr>
+                <th>مبلغ کل</th>
+                <th>عملیات</th>
+            </tr>
             <tr>
                 <td>@factor.Total</td>
                 <td>

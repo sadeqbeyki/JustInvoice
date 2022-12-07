@@ -12,11 +12,11 @@ public class ItemDto
     public long Sum { get; set; }
     public long ProductId { get; set; }
     public string ProductName { get; set; }
-    //public List<ProductViewModel> Products { get; set; }
     public long UnitId { get; set; }
     public string UnitName { get; set; }
-    //public List<UnitViewModel> Units { get; set; }
     public long FactorId { get; set; }
+    public string FactorName { get; set; }
+
 
 
 }
