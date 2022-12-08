@@ -21,8 +21,6 @@ public class CreateModel : PageModel
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
 
-
-
     public CreateModel(IItemApplication itemApplication,
         IProductApplication productApplication,
         IUnitApplication unitApplication,
@@ -39,21 +37,6 @@ public class CreateModel : PageModel
     {
         Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
         Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
-
-        //FactorDto factorDto = new()
-        //{
-        //    Items = new List<ItemDto>()
-        //};
-
-        //ItemDto row1 = new();
-        //ItemDto row2 = new();
-        //ItemDto row3 = new();
-        //factorDto.CreationDate = DateTime.Now.ToFarsi();
-        //factorDto.Items.Add(row1);
-        //factorDto.Items.Add(row2);
-        //factorDto.Items.Add(row3);
-        //return Page();
-
     }
     [BindProperty]
     public FactorItemDto? Command { get; set; }
