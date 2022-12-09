@@ -39,4 +39,10 @@ public class IndexModel : PageModel
         _factorApplication.Delete(id);
         return RedirectToPage("./Index");
     }
+
+    public IActionResult OnGetDetails(int id)
+    {
+        _factorApplication.Delete(id);
+        return RedirectToPage("./Index");
+    }
 }

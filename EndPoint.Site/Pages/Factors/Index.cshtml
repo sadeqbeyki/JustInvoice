@@ -65,6 +65,9 @@
                     |
                     <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@factor.Id"
                    class="btn btn-danger btn-custom waves-effect waves-light m-b-5">حذف</a>
+                    |
+                    <a asp-page="./Details" asp-page-handler="OnGetDetails" asp-route-id="@factor.Id"
+                   class="btn btn-danger btn-custom waves-effect waves-light m-b-5">حذف</a>
                 </td>
             </tr>
         }

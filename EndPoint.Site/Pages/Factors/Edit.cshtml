@@ -19,22 +19,52 @@
                                 <span asp-validation-for="Command.Name" class="error"></span>
                             </div>
                         </div>
-@*                        <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Command.CreationDate" class="control-label">تاریخ انتشار</label>
+                                <label asp-for="Command.CreationDate" class="control-label">تاریخ ثبت</label>
                                 <input class="form-control persianDateInput" asp-for="Command.CreationDate">
                                 <span asp-validation-for="Command.CreationDate" class="error"></span>
                             </div>
-                        </div>*@
-                    </div>
-
-                    <div class="row">
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group no-margin">
                                 <label asp-for="Command.Description" class="control-label">توضیحات </label>
                                 <textarea class="form-control autogrow" asp-for="Command.Description"
-                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
                                 <span asp-validation-for="Command.Description" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Command.ProductId" class="control-label">نام کالا</label>
+                                <select class="form-control" asp-for="Command.ProductId" asp-items="@Model.Products">
+                                    <option value="0">نام کالا</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Command.UnitId" class="control-label">واحد</label>
+                                <select class="form-control" asp-for="Command.UnitId" asp-items="@Model.Units">
+                                    <option value="0">نام واحد </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Command.Price" class="control-label">قیمت</label>
+                                <input type="text" class="form-control" asp-for="Command.Price">
+                                <span asp-validation-for="Command.Price" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Command.Count" class="control-label">تعداد</label>
+                                <input type="text" class="form-control" asp-for="Command.Count">
+                                <span asp-validation-for="Command.Count" class="error"></span>
                             </div>
                         </div>
                     </div>
