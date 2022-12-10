@@ -1,10 +1,7 @@
 ﻿using AppFramework;
 using Invoice.ApplicationContracts.Factor;
-using Invoice.ApplicationContracts.Items;
 using Invoice.DAL.Common;
 using Invoice.Domain.FactorAgg;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Invoice.DAL.Persistance;
 
@@ -17,15 +14,17 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
         _invoiceContext = invoiceContext;
     }
 
-    public EditFactor GetDetails(long id)
+    public FactorItemDto GetFactor(long id)
     {
-        return _invoiceContext.Factors.Select(x => new EditFactor()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Total = x.Total,
-                Description = x.Description
-            }).FirstOrDefault(x => x.Id == id);
+        return _invoiceContext.Factors.Select(x => new FactorItemDto()
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Total = x.Total,
+            Description = x.Description,
+            CreationDate = x.CreationDate.ToFarsi()
+
+        }).FirstOrDefault(x => x.Id == id);
     }
 
     public List<FactorItemDto> GetFactors()

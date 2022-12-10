@@ -10,7 +10,7 @@ namespace EndPoint.Site.Pages.Factors;
 
 public class EditModel : PageModel
 {
-    public FactorDto Command;
+    //public FactorDto Command;
     public SelectList Items;
     public SelectList Units;
     public SelectList Products;
@@ -31,15 +31,16 @@ public class EditModel : PageModel
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
     }
+    public FactorItemDto? Command { get; set; }
 
     public IActionResult OnGet(int id)
     {
-        Command = _factorApplication.GetDetails(id);
-        Command.Items = _itemApplication.GetItems();
+        Command = _factorApplication.GetFactor(id);
+        //Command.Items = _itemApplication.GetItems();
 
         return Page();
     }
-    public IActionResult OnPost(int id, FactorDto command)
+    public IActionResult OnPost(int id, FactorItemDto command)
     {
         command.Id = id;
 

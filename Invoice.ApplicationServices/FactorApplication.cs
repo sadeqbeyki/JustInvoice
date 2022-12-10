@@ -22,7 +22,7 @@ public class FactorApplication : IFactorApplication
         _factorRepository.Delete(key);
     }
 
-    public OperationResult Edit(FactorDto command)
+    public OperationResult Edit(FactorItemDto command)
     {
         OperationResult operation = new();
         var factor = _factorRepository.Get(command.Id);
@@ -37,11 +37,10 @@ public class FactorApplication : IFactorApplication
         return operation.Succeeded();
     }
 
-    public FactorDto? GetDetails(long id)
+    public FactorItemDto GetFactor(long id)
     {
-        return _factorRepository.GetDetails(id);
+        return _factorRepository.GetFactor(id);
     }
-
 
     public List<FactorItemDto> GetFactors()
     {
@@ -70,7 +69,6 @@ public class FactorApplication : IFactorApplication
             }
         };
         _factorRepository.Create(factor);
-        //_factorRepository.SaveChanges();
         return operation.Succeeded();
     }
 
