@@ -11,6 +11,7 @@ namespace EndPoint.Site.Pages.Factors;
 public class EditModel : PageModel
 {
     //public FactorDto Command;
+    public List<ItemDto> ItemList;
     public SelectList Items;
     public SelectList Units;
     public SelectList Products;
@@ -19,7 +20,7 @@ public class EditModel : PageModel
     private readonly IItemApplication _itemApplication;
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
-    public List<FactorDto> Factors { get; set; }
+    //public List<FactorDto> Factors { get; set; }
 
     public EditModel(IItemApplication itemApplication,
         IProductApplication productApplication,
@@ -33,10 +34,12 @@ public class EditModel : PageModel
     }
     public FactorItemDto? Command { get; set; }
 
+
     public IActionResult OnGet(int id)
     {
-        Command = _factorApplication.GetFactor(id);
+        //Command = _factorApplication.GetFactor(id);
         //Command.Items = _itemApplication.GetItems();
+        //Command = _factorApplication.GetFactorWithItems(id);
 
         return Page();
     }

@@ -16,7 +16,4 @@ public class ItemDto
     public string UnitName { get; set; }
     public long FactorId { get; set; }
     public string FactorName { get; set; }
-
-
-
 }
