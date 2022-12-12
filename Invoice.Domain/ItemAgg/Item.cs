@@ -10,9 +10,9 @@ public class Item : BaseEntity
     public long Count { get; set; }
     public long Sum { get; set; }
     public long ProductId { get; set; }
-    public Product ProductName { get; set; }
+    public Product Product { get; set; }
     public long UnitId { get; set; }
-    public Unit UnitName { get; set; }
+    public Unit Unit { get; set; }
     public long FactorId { get; set; }
-    public Factor FactorName { get; set; }
+    public Factor Factor { get; set; }
 }

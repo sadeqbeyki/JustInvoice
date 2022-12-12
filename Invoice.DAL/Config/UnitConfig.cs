@@ -12,6 +12,6 @@ public class UnitConfig : IEntityTypeConfiguration<Unit>
         builder.Property(x => x.Name);
 
         builder.HasMany(x => x.Items)
-            .WithOne(x => x.UnitName).HasForeignKey(x => x.UnitId);
+            .WithOne(x => x.Unit).HasForeignKey(x => x.UnitId);
     }
 }

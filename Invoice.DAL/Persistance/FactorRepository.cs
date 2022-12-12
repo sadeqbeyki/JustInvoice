@@ -3,7 +3,6 @@ using Invoice.ApplicationContracts.Factor;
 using Invoice.ApplicationContracts.Items;
 using Invoice.DAL.Common;
 using Invoice.Domain.FactorAgg;
-using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.DAL.Persistance;
 
@@ -41,8 +40,18 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
 		}).ToList();
 	}
 
-	public List<FactorDto> GetFactorWithItems()
+	public List<ItemDto> GetItems(long id)
 	{
-		return _invoiceContext.Factors.Include(x => x.Items).ToList();
+		return _invoiceContext.Items
+			.Where(x => x.FactorId == id)
+			.Select(x => new ItemDto
+			{
+				Id = x.Id,
+				Price = x.Price,
+				Count = x.Count,
+				Sum = x.Sum,
+				Product = x.Product.Name,
+				Unit = x.Unit.Name
+			}).ToList();
 	}
 }

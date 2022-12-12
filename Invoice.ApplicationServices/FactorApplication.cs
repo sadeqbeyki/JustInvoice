@@ -1,5 +1,6 @@
 ﻿using AppFramework;
 using Invoice.ApplicationContracts.Factor;
+using Invoice.ApplicationContracts.Items;
 using Invoice.Domain.FactorAgg;
 using Invoice.Domain.ItemAgg;
 
@@ -72,4 +73,8 @@ public class FactorApplication : IFactorApplication
         return operation.Succeeded();
     }
 
+	public List<ItemDto> GetItems(long id)
+	{
+		return _factorRepository.GetItems(id);
+	}
 }

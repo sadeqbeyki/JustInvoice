@@ -37,11 +37,13 @@ public class EditModel : PageModel
 
     public IActionResult OnGet(int id)
     {
-        //Command = _factorApplication.GetFactor(id);
-        //Command.Items = _itemApplication.GetItems();
-        //Command = _factorApplication.GetFactorWithItems(id);
+		Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+		Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
+		Command = _factorApplication.GetFactor(id);
+        Command.Items = _factorApplication.GetItems(id);
 
-        return Page();
+
+		return Page();
     }
     public IActionResult OnPost(int id, FactorItemDto command)
     {

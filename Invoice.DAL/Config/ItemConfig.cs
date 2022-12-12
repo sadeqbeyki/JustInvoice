@@ -14,13 +14,13 @@ public class ItemConfig : IEntityTypeConfiguration<Item>
         builder.Property(x => x.Count);
         builder.Property(x => x.Sum);
 
-        builder.HasOne(x => x.ProductName)
+        builder.HasOne(x => x.Product)
             .WithMany(x => x.Items).HasForeignKey(x => x.ProductId);
 
-        builder.HasOne(x => x.UnitName)
+        builder.HasOne(x => x.Unit)
             .WithMany(x => x.Items).HasForeignKey(x => x.UnitId);
 
-        builder.HasOne(x=>x.FactorName)
+        builder.HasOne(x=>x.Factor)
             .WithMany(x => x.Items).HasForeignKey(x => x.FactorId);
     }
 }

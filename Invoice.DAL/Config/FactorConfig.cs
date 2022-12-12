@@ -15,6 +15,6 @@ public class FctorConfig : IEntityTypeConfiguration<Factor>
         builder.Property(x => x.Description).IsRequired(false);
 
         builder.HasMany(x => x.Items)
-            .WithOne(x => x.FactorName).HasForeignKey(x => x.FactorId);
+            .WithOne(x => x.Factor).HasForeignKey(x => x.FactorId);
     }
 }

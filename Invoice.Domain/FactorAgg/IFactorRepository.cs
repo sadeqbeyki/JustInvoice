@@ -1,9 +1,10 @@
 ﻿using Invoice.ApplicationContracts.Factor;
+using Invoice.ApplicationContracts.Items;
 
 namespace Invoice.Domain.FactorAgg;
 public interface IFactorRepository : IBaseRepository<long, Factor>
 {
-    List<FactorItemDto> GetFactors();
-    List<FactorDto> GetFactorWithItems();
     FactorItemDto GetFactor(long id);
+    List<FactorItemDto> GetFactors();
+    List<ItemDto> GetItems(long id);
 }

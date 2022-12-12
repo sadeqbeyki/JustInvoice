@@ -31,8 +31,8 @@ public class ItemRepository : BaseRepository<long, Item>, IItemRepository
         return _invoiceContext.Items.Select(c => new ItemDto
         {
             Id = c.Id,
-            ProductName = c.ProductName.Name.ToString(),
-            UnitName = c.UnitName.Name.ToString(),
+            Product = c.Product.Name.ToString(),
+            Unit = c.Unit.Name.ToString(),
             Price = c.Price,
             Count = c.Count,
             Sum = c.Sum,

@@ -1,7 +1,4 @@
-﻿using Invoice.ApplicationContracts.Products;
-using Invoice.ApplicationContracts.Units;
-
-namespace Invoice.ApplicationContracts.Items;
+﻿namespace Invoice.ApplicationContracts.Items;
 
 public class ItemDto
 {
@@ -11,9 +8,9 @@ public class ItemDto
     public long Count { get; set; }
     public long Sum { get; set; }
     public long ProductId { get; set; }
-    public string ProductName { get; set; }
+    public string Product { get; set; }
     public long UnitId { get; set; }
-    public string UnitName { get; set; }
+    public string Unit { get; set; }
     public long FactorId { get; set; }
-    public string FactorName { get; set; }
+    public string Factor { get; set; }
 }
