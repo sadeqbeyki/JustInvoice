@@ -13,7 +13,6 @@ public class CreateModel : PageModel
 {
     public SelectList Units;
     public SelectList Products;
-    public ItemDto Items;
 
     private readonly IFactorApplication _factorApplication;
     private readonly IItemApplication _itemApplication;
@@ -38,11 +37,14 @@ public class CreateModel : PageModel
         Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
     }
     [BindProperty]
-    public FactorItemDto? Command { get; set; }
+    public FactorDto? Factor { get; set; }
+    public List<ItemDto> Items { get; set; }
+    public ItemDto Item { get; set; }
+
 
     public async Task<IActionResult> OnPostAsync()
     {
-        _factorApplication.Create(Command);
+        _factorApplication.Create(Factor);
         return RedirectToPage("./Index");
     }
 }
