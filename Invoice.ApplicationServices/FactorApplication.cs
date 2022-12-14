@@ -78,16 +78,16 @@ public class FactorApplication : IFactorApplication
 		return _factorRepository.GetItems(id);
 	}
 
-	public OperationResult Create(FactorDto command)
+	public OperationResult Create(FactorDto model)
 	{
 		OperationResult operation = new();
 		Factor factor = new()
 		{
-			Id = command.Id,
-			Name = command.Name,
-			Total = command.Total,
-			Description = command.Description,
-			Items = new List<Item>(command.Items.Select(i => new Item
+			Id = model.Id,
+			Name = model.Name,
+			Total = model.Total,
+			Description = model.Description,
+			Items = new List<Item>(model.Items.Select(i => new Item
 			{
 				Id = i.Id,
 				Price = i.Price,
@@ -95,7 +95,6 @@ public class FactorApplication : IFactorApplication
 				Sum = i.Sum,
 				ProductId = i.ProductId,
 				UnitId = i.UnitId,
-
 			}).ToList())
 		};
 		_factorRepository.Create(factor);

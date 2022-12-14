@@ -37,14 +37,14 @@ public class CreateModel : PageModel
         Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
     }
     [BindProperty]
-    public FactorDto? Factor { get; set; }
+    public FactorDto Factor { get; set; }
     public List<ItemDto> Items { get; set; }
     public ItemDto Item { get; set; }
 
 
-    public async Task<IActionResult> OnPostAsync()
+    public IActionResult OnPost(FactorDto model)
     {
-        _factorApplication.Create(Factor);
+        _factorApplication.Create(model);
         return RedirectToPage("./Index");
     }
 }
