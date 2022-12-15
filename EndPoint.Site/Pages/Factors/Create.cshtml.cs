@@ -2,14 +2,9 @@ using Invoice.ApplicationContracts.Factor;
 using Invoice.ApplicationContracts.Items;
 using Invoice.ApplicationContracts.Products;
 using Invoice.ApplicationContracts.Units;
-using Invoice.DAL.Common;
-using Invoice.Domain.FactorAgg;
-using Invoice.Domain.ItemAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EndPoint.Site.Pages.Factors;
 
@@ -17,7 +12,6 @@ public class CreateModel : PageModel
 {
     public SelectList Units;
     public SelectList Products;
-
 
     private readonly IFactorApplication _factorApplication;
     private readonly IItemApplication _itemApplication;
@@ -49,20 +43,4 @@ public class CreateModel : PageModel
         _factorApplication.Create(Factor);
         return RedirectToPage("./Index");
     }
-    //public void OnGet()
-    //{
-    //    Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");//
-    //    Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");//
-    //}
-    //[BindProperty]
-    //public FactorDto Factor { get; set; } = new FactorDto(); //
-    //public IActionResult OnPost()
-    //{
-    //    _factorApplication.Create(Factor);
-    //    return RedirectToPage("./Index");
-    //}
-
-
-
-
 }

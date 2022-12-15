@@ -15,4 +15,5 @@ public class Item : BaseEntity
     public Unit Unit { get; set; }
     public long FactorId { get; set; }
     public Factor Factor { get; set; }
+    //public virtual Factor Factor { get; private set; }
 }

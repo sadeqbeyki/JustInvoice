@@ -85,7 +85,7 @@ public class FactorApplication : IFactorApplication
         {
             Id = model.Id,
             Name = model.Name,
-            Total = model.Total,
+            
             Description = model.Description,
 
             Items = new List<Item>(model.Items.Select(i => new Item
@@ -96,26 +96,10 @@ public class FactorApplication : IFactorApplication
                 ProductId = i.ProductId,
                 UnitId = i.UnitId,
 
-            }).ToList())
+            }).ToList()),
+            Total = model.Total
         };
         _factorRepository.Create(factor);
         return operation.Succeeded();
-
-        //foreach (var item in model.Items)
-        //{
-        //          List<Item> items = new()
-        //          {
-        //              new Item
-        //              {
-        //              Id = item.Id,
-        //              Price = item.Price,
-        //              Count = item.Count,
-        //              Sum = item.Sum,
-        //              ProductId = item.ProductId,
-        //              UnitId = item.UnitId,
-        //              }
-        //          };
-        //      }
-
     }
 }
