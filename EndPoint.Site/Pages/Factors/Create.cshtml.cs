@@ -2,10 +2,14 @@ using Invoice.ApplicationContracts.Factor;
 using Invoice.ApplicationContracts.Items;
 using Invoice.ApplicationContracts.Products;
 using Invoice.ApplicationContracts.Units;
+using Invoice.DAL.Common;
+using Invoice.Domain.FactorAgg;
+using Invoice.Domain.ItemAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EndPoint.Site.Pages.Factors;
 
@@ -13,6 +17,7 @@ public class CreateModel : PageModel
 {
     public SelectList Units;
     public SelectList Products;
+
 
     private readonly IFactorApplication _factorApplication;
     private readonly IItemApplication _itemApplication;
@@ -30,21 +35,34 @@ public class CreateModel : PageModel
         _factorApplication = factorApplication;
     }
 
-
     public void OnGet()
     {
-        Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
-        Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
+        Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");//
+        Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");//
+
+        Factor.Items.Add(new ItemDto() { Id = 1 });
     }
     [BindProperty]
-    public FactorDto Factor { get; set; }
-    public List<ItemDto> Items { get; set; }
-    public ItemDto Item { get; set; }
-
-
-    public IActionResult OnPost(FactorDto model)
+    public FactorDto Factor { get; set; } = new FactorDto();
+    public IActionResult OnPost()
     {
-        _factorApplication.Create(model);
+        _factorApplication.Create(Factor);
         return RedirectToPage("./Index");
     }
+    //public void OnGet()
+    //{
+    //    Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");//
+    //    Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");//
+    //}
+    //[BindProperty]
+    //public FactorDto Factor { get; set; } = new FactorDto(); //
+    //public IActionResult OnPost()
+    //{
+    //    _factorApplication.Create(Factor);
+    //    return RedirectToPage("./Index");
+    //}
+
+
+
+
 }
