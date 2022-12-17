@@ -10,6 +10,8 @@ namespace EndPoint.Site.Pages.Factors;
 
 public class CreateModel : PageModel
 {
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
     public SelectList Units;
     public SelectList Products;
 
@@ -21,12 +23,14 @@ public class CreateModel : PageModel
     public CreateModel(IItemApplication itemApplication,
         IProductApplication productApplication,
         IUnitApplication unitApplication,
-        IFactorApplication factorApplication)
+        IFactorApplication factorApplication,
+        IWebHostEnvironment webHostEnvironment)
     {
         _itemApplication = itemApplication;
         _productApplication = productApplication;
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     public void OnGet()
@@ -40,7 +44,24 @@ public class CreateModel : PageModel
     public FactorDto Factor { get; set; } = new FactorDto();
     public IActionResult OnPost()
     {
+        string uniqueFileName = GetUploadFileName(Factor);
+        Factor.PhotoUrl = uniqueFileName;
+        
         _factorApplication.Create(Factor);
         return RedirectToPage("./Index");
+    }
+
+    private string GetUploadFileName(FactorDto model)
+    {
+        string uniqueFileName = string.Empty;
+        if (model.Photo != null)
+        {
+            string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "img");
+            uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+            string filePath = Path.Combine(uploadFolder, uniqueFileName);
+            using var fileStream = new FileStream(filePath, FileMode.Create);
+            model.Photo.CopyTo(fileStream);
+        }
+        return uniqueFileName;
     }
 }

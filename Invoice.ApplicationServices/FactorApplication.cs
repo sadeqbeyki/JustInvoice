@@ -10,6 +10,7 @@ public class FactorApplication : IFactorApplication
 {
     private readonly IFactorRepository _factorRepository;
     private readonly IItemRepository _itemRepository;
+    
 
     public FactorApplication(IFactorRepository factorRepository,
         IItemRepository itemRepository)
@@ -102,4 +103,6 @@ public class FactorApplication : IFactorApplication
         _factorRepository.Create(factor);
         return operation.Succeeded();
     }
+
+
 }
