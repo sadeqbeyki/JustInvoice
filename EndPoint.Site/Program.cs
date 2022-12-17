@@ -1,3 +1,5 @@
+using AppFramework;
+using EndPoint.Site;
 using Invoice.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("FactorDB");
 ServicesConfigure.Configure(builder.Services, connectionString);
+builder.Services.AddTransient<IFileUploader, FileUploader>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

@@ -9,14 +9,14 @@ namespace Invoice.ApplicationServices;
 public class FactorApplication : IFactorApplication
 {
     private readonly IFactorRepository _factorRepository;
-    private readonly IItemRepository _itemRepository;
-    
+    private readonly IFileUploader _fileUploader;
+
 
     public FactorApplication(IFactorRepository factorRepository,
-        IItemRepository itemRepository)
+        IFileUploader fileUploader)
     {
         _factorRepository = factorRepository;
-        _itemRepository = itemRepository;
+        _fileUploader = fileUploader;
     }
 
     public void Delete(int key)
@@ -24,7 +24,7 @@ public class FactorApplication : IFactorApplication
         _factorRepository.Delete(key);
     }
 
-    public OperationResult Edit(FactorItemDto command)
+    public OperationResult Edit(FactorDto command)
     {
         OperationResult operation = new();
         var factor = _factorRepository.Get(command.Id);
@@ -39,39 +39,14 @@ public class FactorApplication : IFactorApplication
         return operation.Succeeded();
     }
 
-    public FactorItemDto GetFactor(long id)
+    public FactorDto GetFactor(long id)
     {
         return _factorRepository.GetFactor(id);
     }
 
-    public List<FactorItemDto> GetFactors()
+    public List<FactorDto> GetFactors()
     {
         return _factorRepository.GetFactors();
-    }
-
-    public OperationResult Create(FactorItemDto command)
-    {
-        OperationResult operation = new();
-        Factor factor = new()
-        {
-            Id = command.Id,
-            Name = command.Name,
-            Total = command.Total,
-            Description = command.Description,
-            Items = new List<Item>
-            {
-                new Item
-                {
-                    Price=command.Price,
-                    Count= command.Count,
-                    Sum=command.Price*command.Count,
-                    ProductId=command.ProductId,
-                    UnitId=command.UnitId,
-                }
-            }
-        };
-        _factorRepository.Create(factor);
-        return operation.Succeeded();
     }
 
     public List<ItemDto> GetItems(long id)
@@ -82,13 +57,14 @@ public class FactorApplication : IFactorApplication
     public OperationResult Create(FactorDto model)
     {
         OperationResult operation = new();
+        var photoPath = $"{model.Name}";
+        var photoName = _fileUploader.Upload(model.Photo, photoPath);
         Factor factor = new()
         {
             Id = model.Id,
             Name = model.Name,
-            
             Description = model.Description,
-
+            PhotoUrl = photoName,
             Items = new List<Item>(model.Items.Select(i => new Item
             {
                 Price = i.Price,

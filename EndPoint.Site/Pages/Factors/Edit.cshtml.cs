@@ -32,7 +32,7 @@ public class EditModel : PageModel
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
     }
-    public FactorItemDto? Command { get; set; }
+    public FactorDto Command { get; set; }
 
 
     public IActionResult OnGet(int id)
@@ -45,7 +45,7 @@ public class EditModel : PageModel
 
 		return Page();
     }
-    public IActionResult OnPost(int id, FactorItemDto command)
+    public IActionResult OnPost(int id, FactorDto command)
     {
         command.Id = id;
 

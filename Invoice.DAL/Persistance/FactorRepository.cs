@@ -15,9 +15,9 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
 		_invoiceContext = invoiceContext;
 	}
 
-	public FactorItemDto GetFactor(long id)
+	public FactorDto GetFactor(long id)
 	{
-		return _invoiceContext.Factors.Select(x => new FactorItemDto()
+		return _invoiceContext.Factors.Select(x => new FactorDto()
 		{
 			Id = x.Id,
 			Name = x.Name,
@@ -28,9 +28,9 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
 		}).FirstOrDefault(x => x.Id == id);
 	}
 
-	public List<FactorItemDto> GetFactors()
+	public List<FactorDto> GetFactors()
 	{
-		return _invoiceContext.Factors.Select(c => new FactorItemDto
+		return _invoiceContext.Factors.Select(c => new FactorDto
 		{
 			Id = c.Id,
 			Name = c.Name,

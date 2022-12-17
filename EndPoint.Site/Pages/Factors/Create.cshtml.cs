@@ -16,17 +16,14 @@ public class CreateModel : PageModel
     public SelectList Products;
 
     private readonly IFactorApplication _factorApplication;
-    private readonly IItemApplication _itemApplication;
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
 
-    public CreateModel(IItemApplication itemApplication,
-        IProductApplication productApplication,
+    public CreateModel(IProductApplication productApplication,
         IUnitApplication unitApplication,
         IFactorApplication factorApplication,
         IWebHostEnvironment webHostEnvironment)
     {
-        _itemApplication = itemApplication;
         _productApplication = productApplication;
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
@@ -44,24 +41,7 @@ public class CreateModel : PageModel
     public FactorDto Factor { get; set; } = new FactorDto();
     public IActionResult OnPost()
     {
-        string uniqueFileName = GetUploadFileName(Factor);
-        Factor.PhotoUrl = uniqueFileName;
-        
         _factorApplication.Create(Factor);
         return RedirectToPage("./Index");
-    }
-
-    private string GetUploadFileName(FactorDto model)
-    {
-        string uniqueFileName = string.Empty;
-        if (model.Photo != null)
-        {
-            string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "img");
-            uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-            string filePath = Path.Combine(uploadFolder, uniqueFileName);
-            using var fileStream = new FileStream(filePath, FileMode.Create);
-            model.Photo.CopyTo(fileStream);
-        }
-        return uniqueFileName;
     }
 }

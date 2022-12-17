@@ -13,7 +13,7 @@ public class IndexModel : PageModel
     private readonly IItemApplication _itemApplication;
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
-    public List<FactorItemDto> Factors { get; set; }
+    public List<FactorDto> Factors { get; set; }
     //public List<ProductViewModel> Products { get; set; }
     //public List<UnitViewModel> Units { get; set; }
 

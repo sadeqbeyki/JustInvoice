@@ -5,12 +5,11 @@ namespace Invoice.ApplicationContracts.Factor;
 
 public interface IFactorApplication
 {
-    OperationResult Create(FactorItemDto command);
     OperationResult Create(FactorDto command);
-    OperationResult Edit(FactorItemDto command);
-    FactorItemDto? GetFactor(long id);
+    OperationResult Edit(FactorDto command);
+    FactorDto GetFactor(long id);
     List<ItemDto> GetItems(long id);
-    List<FactorItemDto> GetFactors();
+    List<FactorDto> GetFactors();
     void Delete(int key);
 
 }
