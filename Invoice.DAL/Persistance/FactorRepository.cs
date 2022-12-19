@@ -50,7 +50,9 @@ public class FactorRepository : BaseRepository<long, Factor>, IFactorRepository
 				Price = x.Price,
 				Count = x.Count,
 				Sum = x.Sum,
+				ProductId= x.ProductId,
 				Product = x.Product.Name,
+				UnitId= x.UnitId,
 				Unit = x.Unit.Name
 			}).ToList();
 	}

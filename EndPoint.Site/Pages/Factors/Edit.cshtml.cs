@@ -10,46 +10,40 @@ namespace EndPoint.Site.Pages.Factors;
 
 public class EditModel : PageModel
 {
-    //public FactorDto Command;
-    public List<ItemDto> ItemList;
-    public SelectList Items;
     public SelectList Units;
     public SelectList Products;
 
     private readonly IFactorApplication _factorApplication;
-    private readonly IItemApplication _itemApplication;
     private readonly IProductApplication _productApplication;
     private readonly IUnitApplication _unitApplication;
-    //public List<FactorDto> Factors { get; set; }
 
-    public EditModel(IItemApplication itemApplication,
-        IProductApplication productApplication,
+    public EditModel(IProductApplication productApplication,
         IUnitApplication unitApplication,
         IFactorApplication factorApplication)
     {
-        _itemApplication = itemApplication;
         _productApplication = productApplication;
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
     }
-    public FactorDto Command { get; set; }
 
 
     public IActionResult OnGet(int id)
     {
 		Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
 		Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
-		Command = _factorApplication.GetFactor(id);
-        Command.Items = _factorApplication.GetItems(id);
 
+		Invoice = _factorApplication.GetFactor(id);
+        Invoice.Items = _factorApplication.GetItems(id);
 
 		return Page();
     }
-    public IActionResult OnPost(int id, FactorDto command)
+    [BindProperty]
+    public FactorDto Invoice { get; set; }
+    public IActionResult OnPost(int id)
     {
-        command.Id = id;
+        Invoice.Id = id;
 
-        var result = _factorApplication.Edit(command);
+        var result = _factorApplication.Update(Invoice);
         return RedirectToPage("./Index", result);
     }
 }

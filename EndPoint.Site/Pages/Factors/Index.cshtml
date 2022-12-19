@@ -16,51 +16,28 @@
 </div>
 
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered">
     <tbody>
+        <tr>
+            <th>#</th>
+            <th>عنوان</th>
+            <th>تاریخ</th>
+            <th>توضیحات</th>
+            <th>مبلغ کل</th>
+            <th>عملیات</th>
+        </tr>
         @foreach (var factor in Model.Factors)
         {
-            <tr>
-                <th>#</th>
-                <th>عنوان</th>
-                <th>تاریخ</th>
-                <th>توضیحات</th>
-            </tr>
+
             <tr>
                 <td>@factor.Id</td>
                 <td>@factor.Name</td>
                 <td>@factor.CreationDate</td>
                 <td>@factor.Description</td>
-            </tr>
-
-@*            @foreach (var item in factor.Items)
-            {
-                <tr>
-                    <th>#</th>
-                    <th>نام کالا</th>
-                    <th>واحد</th>
-                    <th>قیمت</th>
-                    <th>تعداد</th>
-                    <th>جمع</th>
-                </tr>
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.ProductName</td>
-                    <td>@item.UnitName</td>
-                    <td>@item.Price</td>
-                    <td>@item.Count</td>
-                    <td>@item.Sum</td>
-                </tr>
-            }*@
-            <tr>
-                <th>مبلغ کل</th>
-                <th>عملیات</th>
-            </tr>
-            <tr>
                 <td>@factor.Total</td>
                 <td>
-                    <a class="btn btn-warning pull-right m-rl-5" 
-                    asp-page="./Edit" asp-route-id ="@factor.Id">
+                    <a class="btn btn-warning pull-right m-rl-5"
+                   asp-page="./Edit" asp-route-id="@factor.Id">
                         <i class="fa fa-edit"></i> ویرایش
                     </a>
                     |

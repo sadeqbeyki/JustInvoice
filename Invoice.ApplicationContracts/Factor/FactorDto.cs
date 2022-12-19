@@ -27,6 +27,8 @@ public class FactorDto
     }
 
     public string PhotoUrl { get; set; }
-
+    [Required(ErrorMessage = "Please Choose The Profile Photo")]
+    [Display(Name = "Profile Photo")]
+    [NotMapped]
     public IFormFile Photo { get; set; }
 }

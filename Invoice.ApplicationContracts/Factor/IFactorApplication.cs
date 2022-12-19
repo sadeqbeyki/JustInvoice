@@ -6,7 +6,7 @@ namespace Invoice.ApplicationContracts.Factor;
 public interface IFactorApplication
 {
     OperationResult Create(FactorDto command);
-    OperationResult Edit(FactorDto command);
+    OperationResult Update(FactorDto command);
     FactorDto GetFactor(long id);
     List<ItemDto> GetItems(long id);
     List<FactorDto> GetFactors();

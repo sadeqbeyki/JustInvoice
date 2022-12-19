@@ -10,8 +10,6 @@ namespace EndPoint.Site.Pages.Factors;
 
 public class CreateModel : PageModel
 {
-    private readonly IWebHostEnvironment _webHostEnvironment;
-
     public SelectList Units;
     public SelectList Products;
 
@@ -21,27 +19,25 @@ public class CreateModel : PageModel
 
     public CreateModel(IProductApplication productApplication,
         IUnitApplication unitApplication,
-        IFactorApplication factorApplication,
-        IWebHostEnvironment webHostEnvironment)
+        IFactorApplication factorApplication)
     {
         _productApplication = productApplication;
         _unitApplication = unitApplication;
         _factorApplication = factorApplication;
-        _webHostEnvironment = webHostEnvironment;
     }
 
     public void OnGet()
     {
-        Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");//
-        Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");//
+        Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+        Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
 
-        Factor.Items.Add(new ItemDto() { Id = 1 });
+        Invoice.Items.Add(new ItemDto() { Id = 1 });
     }
     [BindProperty]
-    public FactorDto Factor { get; set; } = new FactorDto();
+    public FactorDto Invoice { get; set; } = new FactorDto();
     public IActionResult OnPost()
     {
-        _factorApplication.Create(Factor);
+        _factorApplication.Create(Invoice);
         return RedirectToPage("./Index");
     }
 }
