@@ -20,7 +20,7 @@ public class ItemConfig : IEntityTypeConfiguration<Item>
         builder.HasOne(x => x.Unit)
             .WithMany(x => x.Items).HasForeignKey(x => x.UnitId);
 
-        builder.HasOne(x=>x.Factor)
-            .WithMany(x => x.Items).HasForeignKey(x => x.FactorId);
+        builder.HasOne(x=>x.Invoice)
+            .WithMany(x => x.Items).HasForeignKey(x => x.InvoiceId);
     }
 }

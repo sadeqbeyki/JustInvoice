@@ -5,7 +5,7 @@ using Invoice.DAL;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("FactorDB");
+var connectionString = builder.Configuration.GetConnectionString("InvoiceDB");
 ServicesConfigure.Configure(builder.Services, connectionString);
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 builder.Services.AddRazorPages();

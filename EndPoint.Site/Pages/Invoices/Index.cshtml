@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+
+@{
+    Layout = "Shared/_AdminLayout";
+    ViewData["Title"] = "فاکتور کالا";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        <p class="pull-left">
+            <a class="btn btn-success btn-lg" asp-page="./Create">ایجاد فاکتور جدید</a>
+        </p>
+    </div>
+</div>
+
+<table id="datatable" class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>#</th>
+            <th>عنوان</th>
+            <th>تاریخ</th>
+            <th>توضیحات</th>
+            <th>مبلغ کل</th>
+            <th>عملیات</th>
+        </tr>
+        @foreach (var invoice in Model.Invoices)
+        {
+
+            <tr>
+                <td>@invoice.Id</td>
+                <td>@invoice.Name</td>
+                <td>@invoice.CreationDate</td>
+                <td>@invoice.Description</td>
+                <td>@invoice.Total</td>
+                <td>
+                    <a class="btn btn-warning pull-right m-rl-5"
+                   asp-page="./Edit" asp-route-id="@invoice.Id">
+                        <i class="fa fa-edit"></i> ویرایش
+                    </a>
+                    |
+                    <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@invoice.Id"
+                   class="btn btn-info btn-custom waves-effect waves-light m-b-5">جزئیات</a>
+                    |
+                    @*                    <a asp-page="./Delete" asp-route-id="@invoice.Id"
+                class="btn btn-danger btn-custom waves-effect waves-light m-b-5">حذف</a>*@
+
+                    <a class="btn btn-danger waves-effect waves-light m-b-5"
+                   href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id})">
+                        <i class="fa fa-remove"></i> حذف
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
+}
+
+

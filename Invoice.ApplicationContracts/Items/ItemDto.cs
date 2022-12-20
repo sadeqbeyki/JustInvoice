@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoice.ApplicationContracts.Items;
 
@@ -10,7 +9,7 @@ public class ItemDto
     public long Id { get; set; }
     public string CreationDate { get; set; }
     [Required]
-    [Range(1,999999, ErrorMessage = "وارد نمودن بیش از این مقدار امکانپذیر نیست")]
+    [Range(100,999999, ErrorMessage = "مقدار باید بین 100 و 999999 باشد")]
     [DisplayName("قیمت کنونی کالا")]
     public long Price { get; set; }
     public long Count { get; set; }
@@ -20,6 +19,6 @@ public class ItemDto
     public long UnitId { get; set; }
     public string Unit { get; set; }
     //[ForeignKey("Factor")]
-    public long FactorId { get; set; }
-    public string Factor { get; set; }
+    public long InvoiceId { get; set; }
+    public string Invoice { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using Invoice.Domain.FactorAgg;
-using Invoice.Domain.ProductAgg;
+﻿using Invoice.Domain.ProductAgg;
 using Invoice.Domain.UnitAgg;
 
 namespace Invoice.Domain.ItemAgg;
@@ -13,7 +12,7 @@ public class Item : BaseEntity
     public Product Product { get; set; }
     public long UnitId { get; set; }
     public Unit Unit { get; set; }
-    public long FactorId { get; set; }
-    public Factor Factor { get; set; }
+    public long InvoiceId { get; set; }
+    public InvoiceAgg.Invoice Invoice { get; set; }
     //public virtual Factor Factor { get; private set; }
 }

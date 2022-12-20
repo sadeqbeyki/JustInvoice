@@ -13,7 +13,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7233;http://localhost:5233",
-      "launchUrl": "https://localhost:7233/Factors",
+      "launchUrl": "https://localhost:7233/Invoices",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

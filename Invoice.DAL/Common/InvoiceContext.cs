@@ -1,5 +1,4 @@
 ﻿using Invoice.DAL.Config;
-using Invoice.Domain.FactorAgg;
 using Invoice.Domain.ItemAgg;
 using Invoice.Domain.ProductAgg;
 using Invoice.Domain.UnitAgg;
@@ -12,7 +11,7 @@ public class InvoiceContext : DbContext
     public DbSet<Item> Items { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Unit> Units { get; set; }
-    public DbSet<Factor> Factors { get; set; }
+    public DbSet<Domain.InvoiceAgg.Invoice> Invoices { get; set; }
     public InvoiceContext(DbContextOptions options) : base(options)
     {
     }

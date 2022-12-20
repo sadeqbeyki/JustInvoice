@@ -22,7 +22,7 @@ namespace Invoice.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Invoice.Domain.FactorAgg.Factor", b =>
+            modelBuilder.Entity("Invoice.Domain.InvoiceAgg.Invoice", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace Invoice.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Factors", (string)null);
+                    b.ToTable("Invoices", (string)null);
                 });
 
             modelBuilder.Entity("Invoice.Domain.ItemAgg.Item", b =>
@@ -66,7 +66,7 @@ namespace Invoice.DAL.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("FactorId")
+                    b.Property<long>("InvoiceId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Price")
@@ -83,7 +83,7 @@ namespace Invoice.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FactorId");
+                    b.HasIndex("InvoiceId");
 
                     b.HasIndex("ProductId");
 
@@ -134,9 +134,9 @@ namespace Invoice.DAL.Migrations
 
             modelBuilder.Entity("Invoice.Domain.ItemAgg.Item", b =>
                 {
-                    b.HasOne("Invoice.Domain.FactorAgg.Factor", "Factor")
+                    b.HasOne("Invoice.Domain.InvoiceAgg.Invoice", "Invoice")
                         .WithMany("Items")
-                        .HasForeignKey("FactorId")
+                        .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -152,14 +152,14 @@ namespace Invoice.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Factor");
+                    b.Navigation("Invoice");
 
                     b.Navigation("Product");
 
                     b.Navigation("Unit");
                 });
 
-            modelBuilder.Entity("Invoice.Domain.FactorAgg.Factor", b =>
+            modelBuilder.Entity("Invoice.Domain.InvoiceAgg.Invoice", b =>
                 {
                     b.Navigation("Items");
                 });
