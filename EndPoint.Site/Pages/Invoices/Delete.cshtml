@@ -5,7 +5,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 class="modal-title text-center bg-danger">آیا عملیات حذف را تایید میکنید؟: @Model.Name</h4>
+    <h4 class="modal-title text-center bg-danger">آیا حذف " <b>@Model.Name</b> " را تایید میکنید؟</h4>
 </div>
 
 <form asp-page="./Index" asp-page-handler="Delete"
@@ -45,7 +45,7 @@
             </div>
 
             <div class="col-md-6 btn-group">
-                <img src="~/Images/@Model.PhotoUrl" class="img-fluid" />
+                <img src="~/Images/@Model.PhotoUrl" class="img-fluid" style="height:150px;weight:150px" />
             </div>
 
             <div class="col-md-12">

@@ -1,4 +1,6 @@
-﻿namespace Invoice.Domain;
+﻿using AppFramework;
+
+namespace Invoice.Domain;
 
 public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity, new()
 {
@@ -6,7 +8,7 @@ public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity, new(
     TEntity? Get(TKey key);
     IQueryable<TEntity> GetAll();
     TEntity Update(TEntity entity);
-    void Delete(int key);
+    void Delete(long key);
     void SaveChanges();
 
 }

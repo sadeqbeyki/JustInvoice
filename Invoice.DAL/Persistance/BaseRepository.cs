@@ -1,5 +1,6 @@
 ﻿using Invoice.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Invoice.DAL.Persistance;
 
@@ -19,24 +20,25 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
         _dbContext.SaveChanges();
         return entity;
     }
-    public TEntity? Get(TKey key)
+    public TEntity Get(TKey key)
     {
         return _dbContext.Find<TEntity>(key);
     }
-
     public IQueryable<TEntity> GetAll()
     {
         return _dbContext.Set<TEntity>().AsQueryable();
     }
-
     public TEntity Update(TEntity entity)
     {
         _dbContext.Update(entity);
         _dbContext.SaveChanges();
         return entity;
     }
-
-    public void Delete(int key)
+    public void SaveChanges()
+    {
+        _dbContext.SaveChangesAsync();
+    }
+    public void Delete(long key)
     {
         TEntity entity = new()
         {
@@ -44,10 +46,9 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
         };
         _dbContext.Remove(entity);
         _dbContext.SaveChanges();
-    }
 
-    public void SaveChanges()
-    {
-        _dbContext.SaveChangesAsync();
+    //    _dbContext.Attach(entity);
+    //    _dbContext.Entry(entity).State = EntityState.Deleted;
+    //    _dbContext.SaveChanges();
     }
 }

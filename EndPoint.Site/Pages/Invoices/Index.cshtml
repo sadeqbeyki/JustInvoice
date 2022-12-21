@@ -43,9 +43,6 @@
                     <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@invoice.Id"
                    class="btn btn-info btn-custom waves-effect waves-light m-b-5">جزئیات</a>
                     |
-                    @*                    <a asp-page="./Delete" asp-route-id="@invoice.Id"
-                class="btn btn-danger btn-custom waves-effect waves-light m-b-5">حذف</a>*@
-
                     <a class="btn btn-danger waves-effect waves-light m-b-5"
                    href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id})">
                         <i class="fa fa-remove"></i> حذف

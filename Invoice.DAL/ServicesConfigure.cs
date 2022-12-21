@@ -18,10 +18,6 @@ public class ServicesConfigure
 {
     public static void Configure(IServiceCollection services, string connectionString)
     {
-
-        services.AddTransient<IItemRepository, ItemRepository>();
-        services.AddTransient<IItemApplication, ItemApplication>();
-
         services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<IProductApplication, ProductApplication>();
 

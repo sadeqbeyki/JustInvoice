@@ -106,17 +106,15 @@ public class InvoiceApplication : IInvoiceApplication
 
 
     #region Delete
-    public void Delete(int key)
+    public OperationResult Delete(long id)
     {
-        _invoiceRepository.Delete(key);
+        var operation = new OperationResult();
+        var invoice = _invoiceRepository.GetDetails(id);
+        if (invoice == null)
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+        _invoiceRepository.Delete(id);
+        return operation.Succeeded();
     }
-
-    public InvoiceDto GetDelete(long id)
-    {
-        return _invoiceRepository.GetDelete(id);
-    }
-
-
     #endregion
 
 

@@ -47,8 +47,6 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
         //    .Include(itm => itm.Items)
         //    .Where(inv => inv.Id == id).FirstOrDefault();
     }
-
-
     public List<InvoiceDto> GetInvoices()
     {
         return _invoiceContext.Invoices.Select(c => new InvoiceDto
@@ -60,7 +58,6 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
             CreationDate = c.CreationDate.ToFarsi()
         }).ToList();
     }
-
     public InvoiceDto GetInvoice(long id)
     {
         return _invoiceContext.Invoices.Select(x => new InvoiceDto()
@@ -89,10 +86,4 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
             }).ToList();
     }
 
-    public InvoiceDto GetDelete(long id)
-    {
-        return _invoiceContext.Invoices.Select(id=> new InvoiceDto())
-            .Include(inv => inv.Items)
-            .Where(itm => itm.Id == id).FirstOrDefault();
-    }
 }

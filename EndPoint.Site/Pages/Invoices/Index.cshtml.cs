@@ -32,9 +32,11 @@ public class IndexModel : PageModel
         Invoice = _invoiceApplication.GetDetails(id);
         return Partial("Delete", Invoice);
     }
-    public JsonResult OnPostDelete(int id)
+
+    public JsonResult OnPostDelete(long id)
     {
-         _invoiceApplication.Delete(id);
-        return new JsonResult("./Index");
+        var result = _invoiceApplication.Delete(id);
+        return new JsonResult(result);
+
     }
 }
