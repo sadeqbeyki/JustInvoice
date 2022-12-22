@@ -22,7 +22,7 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
         {
             Id = inv.Id,
             Name = inv.Name,
-            Total = inv.Total,
+            Total = inv.Items.Sum(s => s.Sum),
             Description = inv.Description,
             CreationDate = inv.CreationDate.ToFarsi(),
             PhotoUrl = inv.PhotoUrl,
@@ -31,7 +31,7 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
                 Id = itm.Id,
                 Count = itm.Count,
                 Price = itm.Price,
-                Sum = itm.Sum,
+                Sum = itm.Count * itm.Price,
                 Invoice = itm.Invoice.Name,
                 InvoiceId = itm.InvoiceId,
                 Product = itm.Product.Name,
@@ -53,7 +53,8 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
         {
             Id = c.Id,
             Name = c.Name,
-            Total = c.Total,
+            Total = c.Items.Sum(s => s.Sum),
+            PhotoUrl = c.PhotoUrl,
             Description = c.Description,
             CreationDate = c.CreationDate.ToFarsi()
         }).ToList();

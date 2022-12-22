@@ -16,3 +16,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}

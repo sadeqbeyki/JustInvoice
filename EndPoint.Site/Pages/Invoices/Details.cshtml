@@ -50,6 +50,7 @@
                                     <th>واحد سنجش</th>
                                     <th>قیمت</th>
                                     <th>تعداد</th>
+                                    <th>جمع</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +68,9 @@
                                         </td>
                                         <td>
                                             <input asp-for="@item.Count" class="form-control-plaintext" readonly />
+                                        </td>
+                                        <td>
+                                            <input asp-for="@item.Sum" class="form-control-plaintext" readonly />
                                         </td>
                                     </tr>
                                 }

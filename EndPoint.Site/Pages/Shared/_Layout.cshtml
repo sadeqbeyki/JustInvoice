@@ -3,17 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EndPoint.Site</title>
+
+    <meta name="author" content="Coderthemes">
+    <link rel="shortcut icon" href="images/favicon_1.ico">
+
+    <title>@ViewData["Title"] - i n v o i c e</title>
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EndPoint.Site.styles.css" asp-append-version="true" />
+
+    <!-- Custom Files -->
+    <link href="~/css/persian-datepicker.css" rel="stylesheet" />
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">EndPoint.Site</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">i n v o i c e</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,16 +33,17 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">صفحه اصلی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">حریم خصوصی</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -39,14 +52,34 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - EndPoint.Site - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - i n v o i c e - <a asp-area="" asp-page="/Privacy">حریم خصوصی</a>
         </div>
     </footer>
-    <script src="~/AdminTheme/assets/js/site.js"></script>
 
+    <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content" id="ModalContent">
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- jQuery  -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!--Validate-->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <!--Modal-->
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    <script src="~/AdminTheme//assets/js/site.js"></script>
+    
+    <script src="~/js/persian-date.min.js"></script>
+    <script src="~/js/persian-datepicker.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 
     <script>
         $('.persianDateInput').persianDatepicker({
@@ -54,9 +87,6 @@
             autoClose: true,
             initialValueType: "persian"
         });
-
     </script>
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
