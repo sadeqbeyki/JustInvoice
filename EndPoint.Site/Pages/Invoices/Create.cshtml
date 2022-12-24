@@ -12,122 +12,127 @@
         </div>
         <div class="panel-body">
             <form enctype="multipart/form-data" method="post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group">
-                            <label asp-for="Invoice.Name" class="control-label">نام</label>
-                            <input type="text" class="form-control" asp-for="Invoice.Name">
-                            <span asp-validation-for="Invoice.Name" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label asp-for="Invoice.CreationDate" class="control-label">تاریخ ثبت</label>
-                            <input class="form-control persianDateInput" asp-for="Invoice.CreationDate">
-                            <span asp-validation-for="Invoice.CreationDate" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group no-margin">
-                            <label asp-for="Invoice.Description" class="control-label">توضیحات </label>
-                            <textarea class="form-control autogrow" asp-for="Invoice.Description"
-                                      style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
-                            <span asp-validation-for="Invoice.Description" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 btn-group">
-                        <div class="form-group col-8 p-0">
-                            <label asp-for="Invoice.Photo" class="control-label"></label>
-                            <div class="custom-file">
-                                <input asp-for="Invoice.Photo" class="custom-file-input" id="customFile"
-                                       onchange="document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this)">
-                                <label class="custom-file-label" for="customFile">آپلود تصویر</label>
+                <div class="container-fluid btn-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Invoice.Name" class="control-label">نام</label>
+                                <input asp-for="Invoice.Name" type="text" class="form-control">
+                                <span asp-validation-for="Invoice.Name" class="text-danger"></span>
                             </div>
-                            <span asp-validation-for="Invoice.Photo" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-4">
-                            <img id="PreviewPhoto" src="~/img/no-image.png" alt="Logo Image"
-                                 width="125" height="125" style="border:1px; margin-top:20px; " />
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Invoice.CreationDate" class="control-label">تاریخ ثبت</label>
+                                <input asp-for="Invoice.CreationDate" class="form-control persianDateInput">
+                                <span asp-validation-for="Invoice.CreationDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Invoice.Total" class="control-label">قیمت کل</label>
+                                <input id="Invoice.Total" asp-for="Invoice.Total" class="form-control-plaintext" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group no-margin">
+                                <label asp-for="Invoice.Description" class="control-label">توضیحات </label>
+                                <textarea asp-for="Invoice.Description" class="form-control autogrow"
+                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
+                                <span asp-validation-for="Invoice.Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 btn-group">
+                            <div class="form-group col-8 p-0">
+                                <label asp-for="Invoice.Photo" class="control-label"></label>
+                                <div class="custom-file">
+                                    <input asp-for="Invoice.Photo" class="custom-file-input" id="customFile"
+                                           onchange="document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this)">
+                                    <label class="custom-file-label" for="customFile">آپلود تصویر</label>
+                                </div>
+                                <span asp-validation-for="Invoice.Photo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-4">
+                                <img id="PreviewPhoto" src="~/img/no-image.png" alt="Logo Image"
+                                     width="125" height="125" style="border:1px; margin-top:20px; " />
+                            </div>
+                        </div>
+
+                        <div class="container col-12">
+
+
+                            <div class="col-md-12 p-0 m-0 bg-light">
+                                <table id="ExpTable" class="table table-sm CodeTable">
+                                    <thead>
+                                        <tr>
+                                            <th>نام کالا</th>
+                                            <th>واحد سنجش</th>
+                                            <th>قیمت</th>
+                                            <th>تعداد</th>
+                                            <th>
+                                                <button id='btnaddExperience' type="button"
+                                                        class="btn btn-sm btn-secondary visible"
+                                                        onclick="AddItem(this)">
+                                                    افزودن
+                                                </button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Invoice.Items.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control" asp-for="@Model.Invoice.Items[i].ProductId" asp-items="@Model.Products">
+                                                        <option value="0">نام کالا</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" asp-for="@Model.Invoice.Items[i].UnitId" asp-items="@Model.Units">
+                                                        <option value="0">نام واحد </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input asp-for="@Model.Invoice.Items[i].Price" class="form-control ItemPrice" />
+                                                    <span asp-validation-for="@Model.Invoice.Items[i].Price" class="text-danger"></span>
+                                                </td>
+                                                <td>
+                                                    <input asp-for="@Model.Invoice.Items[i].Count" class="form-control ItemCount" />
+                                                </td>
+                                                <td>
+                                                    <button id='btnremove-@i' type="button"
+                                                        class="btn btn-sm btn-danger visible"
+                                                        onclick="DeleteItem(this)">
+                                                        حذف
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-md-12">
-                        <table id="ExpTable" class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>نام کالا</th>
-                                    <th>واحد سنجش</th>
-                                    <th>قیمت</th>
-                                    <th>تعداد</th>
-                                    <th>عملیات</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < Model.Invoice.Items.Count; i++)
-                                {
-                                    <tr>
-                                        <td>
-                                            <select class="form-control" asp-for="@Model.Invoice.Items[i].ProductId" asp-items="@Model.Products">
-                                                <option value="0">نام کالا</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select class="form-control" asp-for="@Model.Invoice.Items[i].UnitId" asp-items="@Model.Units">
-                                                <option value="0">نام واحد </option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.Invoice.Items[i].Price" class="form-control" />
-                                            <span asp-validation-for="@Model.Invoice.Items[i].Price" class="text-danger"></span>
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.Invoice.Items[i].Count" class="form-control" />
-                                        </td>
-                                        <td>
-
-                                            <button id='btndummy-@i' type="button"
-                                                class="btn btn-sm invisible">
-                                                Du  m my
-                                            </button>
-
-                                            <button id='btnadd-@i' type="button"
-                                                class="btn btn-sm btn-secondary visible"
-                                                onclick="AddItem(this)"
-                                                style="right:94%;position:absolute;">
-                                                افزودن
-                                            </button>
-
-                                            <button id='btnremove-@i' type="button"
-                                                class="btn btn-sm btn-danger visible"
-                                                onclick="DeleteItem(this)"
-                                                style="right:88%;position:absolute;">
-                                                حذف
-                                            </button>
-
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <input type="hidden" id="hdnLastIndex" value="0" />
-
                 </div>
+
+                <input type="hidden" id="hdnLastIndex" value="0" />
+
                 <div class="row">
                     <div class="col-12 btn-group">
-                      
-                            <input type="submit" value="ایجاد" class="btn btn-primary">
-                            <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
-                   
-@*                        <div class="col-6 form-group text-left p-2">
-                            <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
+
+                        <input type="submit" value="ایجاد" class="btn btn-primary">
+                        <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
+
+                        @*
+                        <div class="col-6 form-group text-left p-2">
+                        <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
                         </div>
                         <div class="col-6 form-group text-right p-2">
-                            <input type="submit" value="ایجاد" class="btn btn-primary">
-                        </div>*@
+                        <input type="submit" value="ایجاد" class="btn btn-primary">
+                        </div>
+                        *@
                     </div>
                 </div>
             </form>
@@ -140,15 +145,49 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+    @*<script src="~/js/createInvoice.js"></script>*@
+
     <script type="text/javascript">
         $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
 
+        function CalculateTotal() {
+            var iPrice = document.getElementsByClassName('ItemPrice');
+            var iCount = document.getElementsByClassName('ItemCount');
+            var totalPrice = 0;
+            var rowPrice = 0;
+            var i;
+
+            for (i = 0; i < iPrice.length; i++) {
+                rowPrice = eval(iPrice[i].value) * eval(iCount[i].value);
+                totalPrice = totalPrice + rowPrice;
+            }
+
+            document.getElementById('Invoice.Total').value = totalPrice
+
+            return;
+        }
+        document.addEventListener('change', function (e) {
+            if (e.target.classList.contains('ItemPrice', 'ItemCount')) {
+                CalculateTotal();
+            }
+        }
+            , false);
+
 
         function DeleteItem(btn) {
+
+            var table = document.getElementById('ExpTable');
+            var rows = table.getElementsByTagName('tr');
+            if (rows.length == 2) {
+                alert("حذف این سطر ممکن نیست");
+                return;
+            }
+
             $(btn).closest('tr').remove();
+            CalculateTotal();
         }
 
         function AddItem(btn) {
@@ -156,12 +195,10 @@
             var rows = table.getElementsByTagName('tr');
 
             var rowOuterHtml = rows[rows.length - 1].outerHTML;
-
-            var lastrowIdx = document.getElementById('hdnLastIndex').value;
+            
+            var lastrowIdx = rows.length - 2; 
 
             var nextrowIdx = eval(lastrowIdx) + 1;
-
-            document.getElementById('hdnLastIndex').value = nextrowIdx;
 
             rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
             rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
@@ -169,19 +206,6 @@
 
             var newRow = table.insertRow();
             newRow.innerHTML = rowOuterHtml;
-
-
-            var btnAddId = btn.id;
-            var btnDeleteId = btnAddId.replaceAll('btnadd', 'btnremove');
-
-            var delbtn = document.getElementById(btnDeleteId);
-            delbtn.classList.add("visible");
-            delbtn.classList.remove("invisible");
-
-            var addbtn = document.getElementById(btnAddId);
-            addbtn.classList.remove("visible");
-            addbtn.classList.add("invisible");
-
         }
     </script>
 }

@@ -23,3 +23,26 @@ body {
     height: 40px;
     border-radius: 50px;
 }
+
+.CodeTable table{width:100%}
+.CodeTable thead{width:calc(100%-1em);}
+.CodeTable tbody{
+    display:block;
+    height:140px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.CodeTable thead, .CodeTable tbody tr{
+    display:table;
+    width:97%;
+    table-layout:fixed;
+}
+.CodeTable thead, .CodeTable tbody, .CodeTable td{
+    border:none !important;
+}
+
+.ItemPrice{background-image:none;}
+.ItemCount{background-image:none;}
+
+
+
