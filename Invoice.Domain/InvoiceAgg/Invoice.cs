@@ -19,9 +19,13 @@ public class Invoice : BaseEntity
     public List<Item> Items { get; set; }
 
     public string PhotoUrl { get; set; }
-    [Required(ErrorMessage = "Please Choose The Profile Photo")]
+    //[Required(ErrorMessage = "Please Choose The Profile Photo")]
     [Display(Name = "Profile Photo")]
     [NotMapped]
     public string Photo { get; set; }
 
+    public void Edit(List<Item> items)
+    {
+        Items = items;
+    }
 }

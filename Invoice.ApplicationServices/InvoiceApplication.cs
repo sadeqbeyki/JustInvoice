@@ -3,6 +3,8 @@ using Invoice.ApplicationContracts.Invoice;
 using Invoice.ApplicationContracts.Items;
 using Invoice.Domain.InvoiceAgg;
 using Invoice.Domain.ItemAgg;
+using Invoice.Domain.ProductAgg;
+using System.Linq.Expressions;
 
 namespace Invoice.ApplicationServices;
 
@@ -77,17 +79,21 @@ public class InvoiceApplication : IInvoiceApplication
     {
         OperationResult operation = new();
         var invoice = _invoiceRepository.Get(model.Id);
-        var items = invoice.Items.ToList();
+
+        //List<ItemDto> items = _invoiceRepository.GetItems(model.Id).ToList();
+        //_invoiceRepository.PreEdit(items);
 
         var photoPath = $"{model.Name}";
-        var photoName = _fileUploader.Upload(model.Photo, photoPath);
+        var photoUrl = _fileUploader.Upload(model.Photo, photoPath);
 
         if (invoice != null)
         {
             invoice.Id = model.Id;
             invoice.Name = model.Name;
             invoice.Description = model.Description;
-            invoice.PhotoUrl = photoName;
+            invoice.PhotoUrl = photoUrl;
+            invoice.Total = model.Total;
+
             invoice.Items = model.Items.Select(i => new Item
             {
                 Price = i.Price,
@@ -95,9 +101,8 @@ public class InvoiceApplication : IInvoiceApplication
                 Sum = i.Price * i.Count,
                 ProductId = i.ProductId,
                 UnitId = i.UnitId,
-
             }).ToList();
-            invoice.Total = model.Total;
+
         }
         _invoiceRepository.Update(invoice);
         return operation.Succeeded();
@@ -118,7 +123,49 @@ public class InvoiceApplication : IInvoiceApplication
     #endregion
 
 
+    public OperationResult Edit(InvoiceDto model)
+    {
+        var operation = new OperationResult();
+        var invoice = _invoiceRepository.GetInvoiceWithItems(model.Id);
+        var items = _invoiceRepository.GetItem(model.Id).ToList();
+
+        if (invoice == null)
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+
+        if (_invoiceRepository.Exists(x => x.Name == model.Name && x.Id != model.Id))
+            return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
 
+        var photoPath = $"{model.Name}";
+        var photoUrl = _fileUploader.Upload(model.Photo, photoPath);
 
+        if (invoice != null)
+        {
+            invoice.Id = model.Id;
+            invoice.Name = model.Name;
+            invoice.Description = model.Description;
+            invoice.PhotoUrl = photoUrl;
+            invoice.Total = model.Total;
+
+            foreach (var item in invoice.Items)
+            {
+                foreach (var i in model.Items)
+                {
+
+                    item.Id = i.Id;
+                    item.InvoiceId = i.InvoiceId;
+                    item.Price = i.Price;
+                    item.Count = i.Count;
+                    item.Sum = i.Price * i.Count;
+                    item.ProductId = i.ProductId;
+                    item.UnitId = i.UnitId;
+                }
+
+            }
+            
+        }
+
+        _invoiceRepository.Update(invoice);
+        return operation.Succeeded();
+    }
 }

@@ -1,4 +1,5 @@
 using Invoice.ApplicationContracts.Invoice;
+using Invoice.ApplicationContracts.Items;
 using Invoice.ApplicationContracts.Products;
 using Invoice.ApplicationContracts.Units;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ public class EditModel : PageModel
         Units = new SelectList(_unitApplication.GetUnits(), "Id", "Name");
 
         Invoice = _invoiceApplication.GetDetails(id);
+        Invoice.Items.Add(new ItemDto() { Id = 1 });
     }
     [BindProperty]
     public InvoiceDto Invoice { get; set; } = new InvoiceDto();
@@ -38,7 +40,7 @@ public class EditModel : PageModel
     {
         Invoice.Id = id;
 
-        var result = _invoiceApplication.Update(Invoice);
+        var result = _invoiceApplication.Edit(Invoice);
         return RedirectToPage("./Index", result);
     }
 }

@@ -3,6 +3,8 @@ using Invoice.ApplicationContracts.Invoice;
 using Invoice.ApplicationContracts.Items;
 using Invoice.DAL.Common;
 using Invoice.Domain.InvoiceAgg;
+using Invoice.Domain.ItemAgg;
+using Invoice.Domain.ProductAgg;
 using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.DAL.Persistance;
@@ -86,5 +88,17 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
                 Unit = x.Unit.Name
             }).ToList();
     }
+
+    public Domain.InvoiceAgg.Invoice GetInvoiceWithItems(long id)
+    {
+        return _invoiceContext.Invoices
+            .Include(x => x.Items)
+            .FirstOrDefault(x => x.Id == id);
+    }
+    public IQueryable<Item> GetItem(long id)
+    {
+        return _invoiceContext.Items.Where(x => x.InvoiceId == id);
+    }
+
 
 }

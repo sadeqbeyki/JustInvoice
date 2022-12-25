@@ -12,5 +12,6 @@ public interface IInvoiceApplication
     List<ItemDto> GetItems(long id);
     List<InvoiceDto> GetInvoices();
     OperationResult Delete(long id);
+    OperationResult Edit(InvoiceDto model);
 
 }
