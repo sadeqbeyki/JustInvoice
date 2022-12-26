@@ -4,7 +4,6 @@ using Invoice.ApplicationContracts.Items;
 using Invoice.DAL.Common;
 using Invoice.Domain.InvoiceAgg;
 using Invoice.Domain.ItemAgg;
-using Invoice.Domain.ProductAgg;
 using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.DAL.Persistance;
@@ -61,44 +60,18 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
             CreationDate = c.CreationDate.ToFarsi()
         }).ToList();
     }
-    public InvoiceDto GetInvoice(long id)
+    public void DelEdit(InvoiceDto invoice)
     {
-        return _invoiceContext.Invoices.Select(x => new InvoiceDto()
-        {
-            Id = x.Id,
-            Name = x.Name,
-            Total = x.Total,
-            Description = x.Description,
-            CreationDate = x.CreationDate.ToFarsi()
-        }).FirstOrDefault(x => x.Id == id);
+        List<Item> items = _invoiceContext.Items
+            .Where(item => item.InvoiceId == invoice.Id).ToList();
+        _invoiceContext.Items.RemoveRange(items);
+        _invoiceContext.SaveChanges();
     }
-    public List<ItemDto> GetItems(long id)
+    public void AddEdit(Domain.InvoiceAgg.Invoice invoice)
     {
-        return _invoiceContext.Items
-            .Where(x => x.InvoiceId == id)
-            .Select(x => new ItemDto
-            {
-                Id = x.Id,
-                Price = x.Price,
-                Count = x.Count,
-                Sum = x.Sum,
-                ProductId = x.ProductId,
-                Product = x.Product.Name,
-                UnitId = x.UnitId,
-                Unit = x.Unit.Name
-            }).ToList();
+        _invoiceContext.Attach(invoice);
+        _invoiceContext.Entry(invoice).State = EntityState.Modified;
+        _invoiceContext.Items.AddRange(invoice.Items);
+        _invoiceContext.SaveChanges();
     }
-
-    public Domain.InvoiceAgg.Invoice GetInvoiceWithItems(long id)
-    {
-        return _invoiceContext.Invoices
-            .Include(x => x.Items)
-            .FirstOrDefault(x => x.Id == id);
-    }
-    public IQueryable<Item> GetItem(long id)
-    {
-        return _invoiceContext.Items.Where(x => x.InvoiceId == id);
-    }
-
-
 }

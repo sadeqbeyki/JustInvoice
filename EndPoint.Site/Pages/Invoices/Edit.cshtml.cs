@@ -40,7 +40,7 @@ public class EditModel : PageModel
     {
         Invoice.Id = id;
 
-        var result = _invoiceApplication.Edit(Invoice);
+        var result = _invoiceApplication.Update(Invoice);
         return RedirectToPage("./Index", result);
     }
 }

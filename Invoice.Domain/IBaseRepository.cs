@@ -11,7 +11,6 @@ public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity, new(
     TEntity Update(TEntity entity);
     void Delete(long key);
     void SaveChanges();
-    void PreEdit(IQueryable<TEntity> entities);
     bool Exists(Expression<Func<TEntity, bool>> expression);
 
 

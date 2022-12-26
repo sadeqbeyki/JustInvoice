@@ -23,9 +23,4 @@ public class Invoice : BaseEntity
     [Display(Name = "Profile Photo")]
     [NotMapped]
     public string Photo { get; set; }
-
-    public void Edit(List<Item> items)
-    {
-        Items = items;
-    }
 }
