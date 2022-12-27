@@ -1,4 +1,4 @@
-using Invoice.ApplicationContracts.Invoice;
+using JI.ApplicationContracts.Invoice;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EndPoint.Site.Pages.Invoices;

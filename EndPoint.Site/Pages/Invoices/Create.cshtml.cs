@@ -1,7 +1,7 @@
-using Invoice.ApplicationContracts.Invoice;
-using Invoice.ApplicationContracts.Items;
-using Invoice.ApplicationContracts.Products;
-using Invoice.ApplicationContracts.Units;
+using JI.ApplicationContracts.Invoice;
+using JI.ApplicationContracts.Items;
+using JI.ApplicationContracts.Products;
+using JI.ApplicationContracts.Units;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;

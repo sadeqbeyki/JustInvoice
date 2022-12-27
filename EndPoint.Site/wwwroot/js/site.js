@@ -257,7 +257,14 @@ function DeleteItem(btn) {
         return;
     }
 
-    $(btn).closest('tr').remove();
+    //fix remove all after edit issue
+    var btnIdx = btn.id.replaceAll('btnremove-', '');
+    var idofIsDeleted = btnIdx + "__IsDeleted";
+    var hidIsDelId = document.querySelector("[id$='" + idofIsDeleted + "']").id;
+    document.getElementById(hidIsDelId).value = "true";
+//    $(btn).closest('tr').remove();
+    $(btn).closest('tr').hide();
+
     CalculateTotal();
 }
 

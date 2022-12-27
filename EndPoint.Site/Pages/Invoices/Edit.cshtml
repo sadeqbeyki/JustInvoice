@@ -102,11 +102,15 @@
                                         </select>
                                     </td>
                                     <td>
+                                        <input type="hidden" asp-for="@Model.Invoice.Items[i].IsDeleted" />
                                         <input asp-for="@Model.Invoice.Items[i].Price" class="form-control ItemPrice" />
                                         <span asp-validation-for="@Model.Invoice.Items[i].Price" class="text-danger"></span>
                                     </td>
                                     <td>
+                                        <input type="hidden" asp-for="@Model.Invoice.Items[i].IsDeleted" />
                                         <input asp-for="@Model.Invoice.Items[i].Count" class="form-control ItemCount" />
+                                        <span asp-validation-for="@Model.Invoice.Items[i].Count" class="text-danger"></span>
+
                                     </td>
                                     <td style="width:60px;">
                                         <button id='btnremove-@i' type="button"

@@ -1,6 +1,6 @@
 using AppFramework;
 using EndPoint.Site;
-using Invoice.DAL;
+using JI.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 

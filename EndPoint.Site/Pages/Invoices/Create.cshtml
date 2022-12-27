@@ -66,7 +66,6 @@
                 </div>
             </div>
 
-
             <div class="container col-12px">
                 <div class="col-md-12 p-0 m-0 bg-light">
                     <table id="ExpTable" class="table table-sm CodeTable">
@@ -100,11 +99,14 @@
                                         </select>
                                     </td>
                                     <td>
+                                        <input type="hidden" asp-for="@Model.Invoice.Items[i].IsDeleted" />
                                         <input asp-for="@Model.Invoice.Items[i].Price" class="form-control ItemPrice" />
                                         <span asp-validation-for="@Model.Invoice.Items[i].Price" class="text-danger"></span>
                                     </td>
                                     <td>
+                                        <input type="hidden" asp-for="@Model.Invoice.Items[i].IsDeleted" />
                                         <input asp-for="@Model.Invoice.Items[i].Count" class="form-control ItemCount" />
+                                        <span asp-validation-for="@Model.Invoice.Items[i].Count" class="text-danger"></span>
                                     </td>
                                     <td style="width:60px;">
                                         <button id='btnremove-@i' type="button"
@@ -123,12 +125,6 @@
 
 
                 <div class="col-12 btn-group">
-
-                    @*
-                    <input type="submit" value="ایجاد" class="btn btn-primary">
-                    <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>*@
-
-
                     <div class="col-6 form-group text-right p-2">
                         <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
                     </div>
@@ -146,6 +142,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
     @*<script src="~/js/createInvoice.js"></script>*@
 }
