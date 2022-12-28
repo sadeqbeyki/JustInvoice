@@ -2,15 +2,15 @@
 using JI.ApplicationContracts.Products;
 using JI.ApplicationContracts.Units;
 using JI.ApplicationServices;
-using JI.DAL.Common;
-using JI.DAL.Persistance;
 using JI.Domain.InvoiceAgg;
 using JI.Domain.ProductAgg;
 using JI.Domain.UnitAgg;
+using JI.Persistence.Common;
+using JI.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JI.DAL;
+namespace JI.Persistence;
 
 public class ServicesConfigure
 {

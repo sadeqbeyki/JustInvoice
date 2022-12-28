@@ -1,8 +1,8 @@
 ﻿using JI.ApplicationContracts.Units;
-using JI.DAL.Common;
 using JI.Domain.UnitAgg;
+using JI.Persistence.Common;
 
-namespace JI.DAL.Persistance;
+namespace JI.Persistence.Repositories;
 
 public class UnitRepository : BaseRepository<long, Unit>, IUnitRepository
 {

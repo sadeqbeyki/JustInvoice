@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JI.ApplicationContracts\JI.ApplicationContracts.csproj" />
+    <ProjectReference Include="..\JI.Persistence\JI.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

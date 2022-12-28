@@ -1,12 +1,12 @@
 ﻿using AppFramework;
 using JI.ApplicationContracts.Invoice;
 using JI.ApplicationContracts.Items;
-using JI.DAL.Common;
 using JI.Domain.InvoiceAgg;
 using JI.Domain.ItemAgg;
+using JI.Persistence.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace JI.DAL.Persistance;
+namespace JI.Persistence.Repositories;
 
 public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>, IInvoiceRepository
 {

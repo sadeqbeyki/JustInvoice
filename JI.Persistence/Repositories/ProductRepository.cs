@@ -1,8 +1,8 @@
 ﻿using JI.ApplicationContracts.Products;
-using JI.DAL.Common;
 using JI.Domain.ProductAgg;
+using JI.Persistence.Common;
 
-namespace JI.DAL.Persistance;
+namespace JI.Persistence.Repositories;
 
 public class ProductRepository : BaseRepository<long, Product>, IProductRepository
 {

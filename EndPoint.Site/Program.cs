@@ -1,6 +1,4 @@
-using AppFramework;
 using EndPoint.Site;
-using JI.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 

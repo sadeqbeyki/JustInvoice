@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace JI.DAL.Persistance;
+namespace JI.Persistence.Repositories;
 
 public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
     where TEntity : BaseEntity, new()

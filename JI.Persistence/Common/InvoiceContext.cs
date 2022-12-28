@@ -1,11 +1,11 @@
-﻿using JI.DAL.Config;
+﻿using JI.Persistence.Config;
 using JI.Domain.InvoiceAgg;
 using JI.Domain.ItemAgg;
 using JI.Domain.ProductAgg;
 using JI.Domain.UnitAgg;
 using Microsoft.EntityFrameworkCore;
 
-namespace JI.DAL.Common;
+namespace JI.Persistence.Common;
 
 public class InvoiceContext : DbContext
 {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace JI.DAL.Migrations
+namespace JI.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class IsDeletedAdded : Migration
