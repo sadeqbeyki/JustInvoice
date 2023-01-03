@@ -1,9 +1,8 @@
-﻿using JI.Persistence.Config;
-using JI.Domain.InvoiceAgg;
-using JI.Domain.ItemAgg;
+﻿using JI.Domain.InvoiceAgg;
 using JI.Domain.ProductAgg;
 using JI.Domain.UnitAgg;
 using Microsoft.EntityFrameworkCore;
+using JI.Persistence.Invoices;
 
 namespace JI.Persistence.Common;
 

@@ -1,14 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JI.ApplicationContracts\JI.ApplicationContracts.csproj" />
+    <ProjectReference Include="..\JI.DomainContracts\JI.DomainContracts.csproj" />
     <ProjectReference Include="..\JI.Domain\JI.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Invoices\Command\" />
+    <Folder Include="Invoices\Query\" />
+    <Folder Include="Products\Command\" />
+    <Folder Include="Units\Command\" />
   </ItemGroup>
 
 </Project>

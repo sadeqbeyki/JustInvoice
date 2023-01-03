@@ -1,7 +1,7 @@
 using JI.ApplicationContracts.Invoice;
-using JI.ApplicationContracts.Items;
-using JI.ApplicationContracts.Products;
-using JI.ApplicationContracts.Units;
+using JI.DomainContracts.Invoice;
+using JI.DomainContracts.Products;
+using JI.DomainContracts.Units;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,11 +14,11 @@ public class CreateModel : PageModel
     public SelectList Products;
 
     private readonly IInvoiceApplication _invoiceApplication;
-    private readonly IProductApplication _productApplication;
-    private readonly IUnitApplication _unitApplication;
+    private readonly IGetAllProductsQuery _productApplication;
+    private readonly IGetAllUnitsQuery _unitApplication;
 
-    public CreateModel(IProductApplication productApplication,
-        IUnitApplication unitApplication,
+    public CreateModel(IGetAllProductsQuery productApplication,
+        IGetAllUnitsQuery unitApplication,
         IInvoiceApplication invoiceApplication)
     {
         _productApplication = productApplication;

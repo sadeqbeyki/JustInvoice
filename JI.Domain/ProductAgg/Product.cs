@@ -1,4 +1,5 @@
-﻿using JI.Domain.ItemAgg;
+﻿using JI.Domain.Common;
+using JI.Domain.InvoiceAgg;
 
 namespace JI.Domain.ProductAgg;
 

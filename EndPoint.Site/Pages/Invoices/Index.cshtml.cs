@@ -1,4 +1,5 @@
 ﻿using JI.ApplicationContracts.Invoice;
+using JI.DomainContracts.Invoice;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

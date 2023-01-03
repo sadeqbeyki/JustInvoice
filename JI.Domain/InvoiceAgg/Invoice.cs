@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using JI.Domain.ItemAgg;
+using JI.Domain.Common;
 
 namespace JI.Domain.InvoiceAgg;
 

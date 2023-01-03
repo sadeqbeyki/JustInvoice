@@ -1,4 +1,5 @@
 using EndPoint.Site;
+using JI.Persistence.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
