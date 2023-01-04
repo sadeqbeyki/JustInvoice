@@ -1,10 +1,10 @@
 ﻿namespace JI.Domain.Common;
 
-public class BaseEntity
+public class EntityBase
 {
     public long Id { get; set; }
     public DateTime CreationDate { get; private set; }
-    public BaseEntity()
+    public EntityBase()
     {
         CreationDate = DateTime.Now;
     }

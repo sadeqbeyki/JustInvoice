@@ -72,8 +72,13 @@ public class InvoiceApplication : IInvoiceApplication
         OperationResult operation = new();
 
         _invoiceRepository.DelEdit(model);
-
         var invoice = _invoiceRepository.Get(model.Id);
+
+        if (invoice == null)
+            return operation.Failed(ApplicationMessages.RecordNotFound);
+
+        if (_invoiceRepository.Exists(x => x.Name == model.Name && x.Id != model.Id))
+            return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
         model.Items.RemoveAll(r => r.Count == 0 && r.Price == 0);
         model.Items.RemoveAll(r => r.IsDeleted == true);
@@ -97,46 +102,8 @@ public class InvoiceApplication : IInvoiceApplication
                 ProductId = i.ProductId,
                 UnitId = i.UnitId,
             }).ToList();
-
         }
         _invoiceRepository.AddEdit(invoice);
-        return operation.Succeeded();
-    }
-
-    public OperationResult Edit(InvoiceDto model)
-    {
-        var operation = new OperationResult();
-        var invoice = _invoiceRepository.Get(model.Id);
-
-        if (invoice == null)
-            return operation.Failed(ApplicationMessages.RecordNotFound);
-
-        if (_invoiceRepository.Exists(x => x.Name == model.Name && x.Id != model.Id))
-            return operation.Failed(ApplicationMessages.DuplicatedRecord);
-
-
-        var photoPath = $"{model.Name}";
-        var photoUrl = _fileUploader.Upload(model.Photo, photoPath);
-
-        if (invoice != null)
-        {
-            invoice.Id = model.Id;
-            invoice.Name = model.Name;
-            invoice.Description = model.Description;
-            invoice.PhotoUrl = photoUrl;
-            invoice.Total = model.Total;
-
-            invoice.Items = model.Items.Select(i => new Item
-            {
-                Price = i.Price,
-                Count = i.Count,
-                Sum = i.Price * i.Count,
-                ProductId = i.ProductId,
-                UnitId = i.UnitId,
-            }).ToList();
-        }
-
-        _invoiceRepository.Update(invoice);
         return operation.Succeeded();
     }
 

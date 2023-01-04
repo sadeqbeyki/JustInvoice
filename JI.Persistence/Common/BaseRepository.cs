@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace JI.Persistence.Common;
 
 public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
-    where TEntity : BaseEntity, new()
+    where TEntity : EntityBase, new()
 {
     private readonly DbContext _dbContext;
 
@@ -48,10 +48,6 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
         };
         _dbContext.Remove(entity);
         _dbContext.SaveChanges();
-
-        //    _dbContext.Attach(entity);
-        //    _dbContext.Entry(entity).State = EntityState.Deleted;
-        //    _dbContext.SaveChanges();
     }
     public bool Exists(Expression<Func<TEntity, bool>> expression)
     {

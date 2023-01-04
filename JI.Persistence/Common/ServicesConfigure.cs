@@ -28,6 +28,6 @@ public class ServicesConfigure
         services.AddTransient<IInvoiceRepository, InvoiceRepository>();
         services.AddTransient<IInvoiceApplication, InvoiceApplication>();
 
-        services.AddDbContext<InvoiceContext>(x => x.UseSqlServer(connectionString));
+        services.AddDbContext<InvoiceDbContext>(x => x.UseSqlServer(connectionString));
     }
 }

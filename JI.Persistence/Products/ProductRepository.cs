@@ -6,9 +6,9 @@ namespace JI.Persistence.Products;
 
 public class ProductRepository : BaseRepository<long, Product>, IProductRepository
 {
-    private readonly InvoiceContext _invoiceContext;
+    private readonly InvoiceDbContext _invoiceContext;
 
-    public ProductRepository(InvoiceContext invoiceContext) : base(invoiceContext)
+    public ProductRepository(InvoiceDbContext invoiceContext) : base(invoiceContext)
     {
         _invoiceContext = invoiceContext;
     }

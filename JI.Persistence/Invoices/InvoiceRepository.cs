@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JI.Persistence.Invoices;
 
-public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>, IInvoiceRepository
+public class InvoiceRepository : BaseRepository<long, Invoice>, IInvoiceRepository
 {
-    private readonly InvoiceContext _invoiceContext;
+    private readonly InvoiceDbContext _invoiceContext;
 
-    public InvoiceRepository(InvoiceContext invoiceContext) : base(invoiceContext)
+    public InvoiceRepository(InvoiceDbContext invoiceContext) : base(invoiceContext)
     {
         _invoiceContext = invoiceContext;
     }
@@ -40,11 +40,6 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
                 CreationDate = itm.CreationDate.ToFarsi()
             }).ToList()
         }).FirstOrDefault(x => x.Id == id);
-
-
-        //return _invoiceContext.Invoices
-        //    .Include(itm => itm.Items)
-        //    .Where(inv => inv.Id == id).FirstOrDefault();
     }
     public List<InvoiceDto> GetInvoices()
     {
@@ -65,7 +60,7 @@ public class InvoiceRepository : BaseRepository<long, Domain.InvoiceAgg.Invoice>
         _invoiceContext.Items.RemoveRange(items);
         _invoiceContext.SaveChanges();
     }
-    public void AddEdit(Domain.InvoiceAgg.Invoice invoice)
+    public void AddEdit(Invoice invoice)
     {
         _invoiceContext.Attach(invoice);
         _invoiceContext.Entry(invoice).State = EntityState.Modified;

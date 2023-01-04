@@ -6,9 +6,9 @@ namespace JI.Persistence.Units;
 
 public class UnitRepository : BaseRepository<long, Unit>, IUnitRepository
 {
-    private readonly InvoiceContext _invoiceContext;
+    private readonly InvoiceDbContext _invoiceContext;
 
-    public UnitRepository(InvoiceContext invoiceContext) : base(invoiceContext)
+    public UnitRepository(InvoiceDbContext invoiceContext) : base(invoiceContext)
     {
         _invoiceContext = invoiceContext;
     }

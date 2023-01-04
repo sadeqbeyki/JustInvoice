@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace JI.DomainContracts.Common;
 
-public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity, new()
+public interface IBaseRepository<TKey, TEntity> where TEntity : EntityBase, new()
 {
     TEntity Create(TEntity entity);
     TEntity? Get(TKey key);

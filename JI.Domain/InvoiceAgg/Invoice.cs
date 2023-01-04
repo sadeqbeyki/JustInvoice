@@ -4,7 +4,7 @@ using JI.Domain.Common;
 
 namespace JI.Domain.InvoiceAgg;
 
-public class Invoice : BaseEntity
+public class Invoice : EntityBase
 {
     public Invoice()
     {

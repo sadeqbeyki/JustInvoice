@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JI.Persistence.Migrations
 {
-    [DbContext(typeof(InvoiceContext))]
+    [DbContext(typeof(InvoiceDbContext))]
     [Migration("20221219212106_init")]
     partial class init
     {

@@ -1,3 +1,4 @@
+using AppFramework;
 using EndPoint.Site;
 using JI.Persistence.Common;
 
