@@ -1,4 +1,5 @@
-﻿using JI.Domain.UnitAgg;
+﻿using AppFramework;
+using JI.Domain.UnitAgg;
 using JI.DomainContracts.Units;
 using JI.Persistence.Common;
 
@@ -21,5 +22,15 @@ public class UnitRepository : BaseRepository<long, Unit>, IUnitRepository
             Name = c.Name,
 
         }).ToList();
+    }
+
+    OperationResult Create(Unit unit)
+    {
+        throw new NotImplementedException();
+    }
+
+    OperationResult IUnitRepository.Update(Unit unit)
+    {
+        throw new NotImplementedException();
     }
 }
