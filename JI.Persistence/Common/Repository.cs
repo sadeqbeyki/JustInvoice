@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JI.Persistence.Common;
 
-public class Repository<T> : IRepository<T> where T : EntityBase
+public class Repository<T> : IRepository<T> where T : EntityBase<T>
 {
     private readonly InvoiceDbContext _dbContext;
 
@@ -13,7 +13,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase
         _dbContext = dbContext;
     }
 
-    public virtual T GetById(int id)
+    public virtual T GetById(T id)
     {
         return _dbContext.Set<T>().Find(id);
     }

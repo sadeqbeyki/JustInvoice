@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JI.Domain.InvoiceAgg;
 
-public class Item : EntityBase
+public class Item : EntityBase<long>
 {
     public long Price { get; set; }
     public long Count { get; set; }

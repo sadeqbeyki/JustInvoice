@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace JI.DomainContracts.Common;
 
-public interface IRepository<T> where T : EntityBase
+public interface IRepository<T> where T : EntityBase<T>
 {
-    T GetById(int id);
+    T GetById(T id);
 
     IEnumerable<T> List();
 

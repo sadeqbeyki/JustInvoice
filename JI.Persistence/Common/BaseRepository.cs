@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace JI.Persistence.Common;
 
 public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
-    where TEntity : EntityBase, new()
+    where TEntity : EntityBase<TKey>, new()
 {
     private readonly DbContext _dbContext;
 
@@ -40,7 +40,7 @@ public class BaseRepository<TKey, TEntity> : IBaseRepository<TKey, TEntity>
     {
         _dbContext.SaveChangesAsync();
     }
-    public void Delete(long key)
+    public void Delete(TKey key)
     {
         TEntity entity = new()
         {
