@@ -1,4 +1,4 @@
-﻿using AppFramework;
+﻿using InvoiceFramework;
 using JI.Domain.UnitAgg;
 using JI.DomainContracts.Units;
 using JI.Persistence.Common;
@@ -14,6 +14,11 @@ public class UnitRepository : BaseRepository<long, Unit>, IUnitRepository
         _invoiceContext = invoiceContext;
     }
 
+    public OperationResult Create(UnitDto unit)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<UnitDto> GetUnits()
     {
         return _invoiceContext.Units.Select(c => new UnitDto
@@ -24,12 +29,7 @@ public class UnitRepository : BaseRepository<long, Unit>, IUnitRepository
         }).ToList();
     }
 
-    OperationResult Create(Unit unit)
-    {
-        throw new NotImplementedException();
-    }
-
-    OperationResult IUnitRepository.Update(Unit unit)
+    public OperationResult Update(UnitDto unit)
     {
         throw new NotImplementedException();
     }

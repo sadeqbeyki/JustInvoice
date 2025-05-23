@@ -1,5 +1,6 @@
-﻿
-namespace AppFramework;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace InvoiceFramework;
 
 public interface IFileUploader
 {

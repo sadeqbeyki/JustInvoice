@@ -1,5 +1,5 @@
 using JI.ApplicationContracts.Invoice;
-using JI.DomainContracts.Invoice;
+using JI.DomainContracts.Invoices;
 using JI.DomainContracts.Products;
 using JI.DomainContracts.Units;
 using Microsoft.AspNetCore.Mvc;

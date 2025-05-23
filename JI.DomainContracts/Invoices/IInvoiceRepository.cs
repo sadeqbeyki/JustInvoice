@@ -1,5 +1,5 @@
-﻿using JI.ApplicationContracts.Invoice;
-using JI.DomainContracts.Common;
+﻿using JI.DomainContracts.Common;
+using JI.DomainContracts.Invoices;
 
 namespace JI.Domain.InvoiceAgg;
 

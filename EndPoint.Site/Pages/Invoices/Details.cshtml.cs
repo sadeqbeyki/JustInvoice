@@ -1,5 +1,4 @@
-using JI.ApplicationContracts.Invoice;
-using JI.DomainContracts.Invoice;
+using JI.DomainContracts.Invoices;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EndPoint.Site.Pages.Invoices;

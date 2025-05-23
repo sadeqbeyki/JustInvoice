@@ -1,8 +1,8 @@
-﻿using AppFramework;
+﻿using InvoiceFramework;
+using JI.Domain.UnitAgg;
 using JI.DomainContracts.Common;
-using JI.DomainContracts.Units;
 
-namespace JI.Domain.UnitAgg;
+namespace JI.DomainContracts.Units;
 
 public interface IUnitRepository : IBaseRepository<long, Unit>
 {

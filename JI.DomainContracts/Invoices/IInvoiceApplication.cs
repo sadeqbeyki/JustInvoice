@@ -1,7 +1,6 @@
-﻿using AppFramework;
-using JI.ApplicationContracts.Invoice;
+﻿using InvoiceFramework;
 
-namespace JI.DomainContracts.Invoice;
+namespace JI.DomainContracts.Invoices;
 
 public interface IInvoiceApplication
 {

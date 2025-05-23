@@ -1,5 +1,4 @@
-﻿using JI.Domain.UnitAgg;
-using JI.DomainContracts.Units;
+﻿using JI.DomainContracts.Units;
 
 namespace JI.ApplicationServices.Units.Query;
 public class GetAllUnitsQuery : IGetAllUnitsQuery

@@ -1,6 +1,7 @@
-﻿using AppFramework;
+﻿using InvoiceFramework;
 using JI.ApplicationContracts.Invoice;
 using JI.Domain.InvoiceAgg;
+using JI.DomainContracts.Invoices;
 using JI.Persistence.Common;
 using Microsoft.EntityFrameworkCore;
 

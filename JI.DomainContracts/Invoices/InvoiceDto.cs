@@ -1,8 +1,9 @@
-﻿using AppFramework;
+﻿using InvoiceFramework;
+using JI.ApplicationContracts.Invoice;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace JI.ApplicationContracts.Invoice;
+namespace JI.DomainContracts.Invoices;
 
 public class InvoiceDto
 {

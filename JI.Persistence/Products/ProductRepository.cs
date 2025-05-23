@@ -13,6 +13,16 @@ public class ProductRepository : BaseRepository<long, Product>, IProductReposito
         _invoiceContext = invoiceContext;
     }
 
+    public void AddEdit(ProductDto product)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DelEdit(ProductDto product)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<ProductDto> GetProducts()
     {
         return _invoiceContext.Products.Select(c => new ProductDto

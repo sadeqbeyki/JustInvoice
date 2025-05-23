@@ -1,4 +1,4 @@
-﻿using AppFramework;
+﻿using InvoiceFramework;
 
 namespace EndPoint.Site;
 public class FileUploader : IFileUploader
