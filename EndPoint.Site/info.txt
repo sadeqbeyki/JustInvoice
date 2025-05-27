@@ -1,0 +1,2 @@
+﻿PS D:\SadeQ\Projects\1\JustInvoice> dotnet ef migrations add InitialCreate --context InvoiceDbContext --project JI.Persistence --startup-project EndPoint.Site --output-dir JI.Persistence/Migrations/Invoices
+PS D:\SadeQ\Projects\1\JustInvoice> dotnet ef database update --context InvoiceDbContext --project JI.Persistence --startup-project EndPoint.Site
