@@ -10,13 +10,13 @@
     <div class="col-10">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
     </div>
-        <div class="pull-left col-2 btn-group justify-content-end p-3">
-            <a asp-page ="./Create" class="btn btn-success btn-sm">ایجاد فاکتور جدید</a>
-        </div>
+    <div class="pull-left col-2 btn-group justify-content-end p-3">
+        <a asp-page="./Create" class="btn btn-success btn-sm">ایجاد فاکتور جدید</a>
+    </div>
 </div>
 
 <table id="datatable" class="table table-bordered">
-    <tbody>
+    <thead>
         <tr>
             <th>شماره فاکتور</th>
             <th></th>
@@ -26,6 +26,8 @@
             <th>مبلغ کل</th>
             <th>عملیات</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach (var invoice in Model.Invoices)
         {
 
@@ -39,16 +41,16 @@
                 <td>@invoice.Description</td>
                 <td>@invoice.Total</td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@invoice.Id" 
-                        class="btn btn-sm btn-info">
+                    <a asp-page="./Edit" asp-route-id="@invoice.Id"
+                       class="btn btn-sm btn-info">
                         <i class="fa fa-edit"></i> ویرایش
                     </a>
                     |
                     <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@invoice.Id"
-                        class="btn btn-sm btn-primary ml-1">جزئیات</a>
+                       class="btn btn-sm btn-primary ml-1">جزئیات</a>
                     |
-                    <a href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id})"
-                        class="btn btn-sm btn-danger ml-1">
+                    <a href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id })"
+                       class="btn btn-sm btn-danger ml-1">
                         <i class="fa fa-remove"></i> حذف
                     </a>
                 </td>
@@ -57,7 +59,7 @@
     </tbody>
 </table>
 
-@section Scripts{
+@section Scripts {
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap.js"></script>
 
