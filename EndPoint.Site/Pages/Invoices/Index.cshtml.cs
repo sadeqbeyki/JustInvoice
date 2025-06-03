@@ -4,16 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EndPoint.Site.Pages.Invoices;
 
-public class IndexModel : PageModel
+public class IndexModel(IInvoiceApplication invoiceApplication) : PageModel
 {
-    private readonly IInvoiceApplication _invoiceApplication;
+    private readonly IInvoiceApplication _invoiceApplication = invoiceApplication;
+    public List<InvoiceDto> Invoices { get; set; } = new List<InvoiceDto> { };
 
-    public List<InvoiceDto> Invoices { get; set; }
-
-    public IndexModel(IInvoiceApplication invoiceApplication)
-    {
-        _invoiceApplication = invoiceApplication;
-    }
 
     public void OnGet()
     {
