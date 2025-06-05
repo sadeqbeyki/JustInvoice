@@ -17,4 +17,10 @@
     <ProjectReference Include="..\JI.Persistence\JI.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\bootstrap\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\lib\jquery-validation\" />
+  </ItemGroup>
+
 </Project>
