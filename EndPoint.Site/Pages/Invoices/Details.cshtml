@@ -1,13 +1,13 @@
 ﻿@page
 @model DetailsModel
 @{
-    ViewData["Title"] = "جزئیات فاکتور";
+    ViewData["Title"] = "Invoice detatils";
 }
 
 <div class="col-11 mx-auto pt-0 p-0">
     <div class="card">
         <div class="card-header bg-success text-white" style="height:53px;">
-            <h3 class="panel-title">جزئیات فاکتور @Model.Invoice.Name</h3>
+            <h3 class="panel-title"> Invoice detatils @Model.Invoice.Name</h3>
         </div>
         <form enctype="multipart/form-data" method="post">
             <div class="container-fluid btn-group">
@@ -15,25 +15,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Invoice.Name" class="control-label">نام</label>
+                                <label asp-for="Invoice.Name" class="control-label">Name</label>
                                 <input asp-for="Invoice.Name" class="form-control-plaintext" readonly />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Invoice.CreationDate" class="control-label">تاریخ ثبت</label>
+                                <label asp-for="Invoice.CreationDate" class="control-label">Creation date</label>
                                 <input asp-for="Invoice.CreationDate" class="form-control-plaintext persianDateInput" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Invoice.Total" class="control-label">جمع کل</label>
+                                <label asp-for="Invoice.Total" class="control-label">Total</label>
                                 <input asp-for="Invoice.Total" class="form-control-plaintext" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group no-margin">
-                                <label asp-for="Invoice.Description" class="control-label">توضیحات </label>
+                                <label asp-for="Invoice.Description" class="control-label">Description </label>
                                 <textarea asp-for="Invoice.Description" class="form-control-plaintext autogrow"
                                           style="overflow: hidden; word-wrap: break-word; resize: both; height: 50px;" readonly></textarea>
                             </div>
@@ -54,11 +54,11 @@
                         <table id="ExpTable" class="table table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th>نام کالا</th>
-                                    <th>واحد سنجش</th>
-                                    <th>قیمت</th>
-                                    <th>تعداد</th>
-                                    <th>جمع</th>
+                                    <th>Product name</th>
+                                    <th>Unit</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,7 +90,7 @@
 
                     <div class="col-12 btn-group">
                         <div class="col-6 form-group text-right p-2">
-                            <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
+                            <a asp-page="./Index" class="btn btn-secondary">Return</a>
                         </div>
                     </div>
                 </div>

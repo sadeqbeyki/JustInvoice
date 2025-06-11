@@ -1,13 +1,13 @@
 ﻿@page
 @model EditModel
 @{
-    ViewData["Title"] = "ویرایش فاکتور ";
+    ViewData["Title"] = "Edit Invoice";
 }
 
 <div class="col-11 mx-auto pt-0 p-0">
     <div class="card">
         <div class="card-header bg-success text-white" style="height:53px;">
-            <h3 class="panel-title">ویرایش فاکتور</h3>
+            <h3 class="panel-title">Edit Invoice</h3>
         </div>
         <form enctype="multipart/form-data" method="post">
 
@@ -20,27 +20,27 @@
                         <div class="col-md-6">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Invoice.Name" class="control-label">نام</label>
+                                <label asp-for="Invoice.Name" class="control-label">Name</label>
                                 <input asp-for="Invoice.Name" type="text" class="form-control">
                                 <span asp-validation-for="Invoice.Name" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Invoice.CreationDate" class="control-label">تاریخ ثبت</label>
+                                <label asp-for="Invoice.CreationDate" class="control-label">Creation date</label>
                                 <input asp-for="Invoice.CreationDate" class="form-control persianDateInput">
                                 <span asp-validation-for="Invoice.CreationDate" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="Invoice.Total" class="control-label">قیمت کل</label>
+                                <label asp-for="Invoice.Total" class="control-label">Total price</label>
                                 <input id="Invoice.Total" asp-for="Invoice.Total" class="form-control-plaintext" readonly />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group no-margin">
-                                <label asp-for="Invoice.Description" class="control-label">توضیحات </label>
+                                <label asp-for="Invoice.Description" class="control-label">Description </label>
                                 <textarea asp-for="Invoice.Description" class="form-control autogrow"
                                           style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 50px;"></textarea>
                                 <span asp-validation-for="Invoice.Description" class="text-danger"></span>
@@ -53,7 +53,7 @@
                                 <div class="custom-file">
                                     <input asp-for="Invoice.Photo" class="custom-file-input" id="customFile"
                                            onchange="document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this.files[0])">
-                                    <label class="custom-file-label" for="customFile">آپلود تصویر</label>
+                                    <label class="custom-file-label" for="customFile">Upload image</label>
                                 </div>
                                 <span asp-validation-for="Invoice.Photo" class="text-danger"></span>
                             </div>
@@ -74,15 +74,15 @@
                     <table id="ExpTable" class="table table-sm CodeTable">
                         <thead>
                             <tr>
-                                <th>نام کالا</th>
-                                <th>واحد سنجش</th>
-                                <th>قیمت</th>
-                                <th>تعداد</th>
+                                <th>Product name</th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Count</th>
                                 <th style="width:75px;">
                                     <button id='btnaddExperience' type="button"
                                             class="btn btn-sm btn-secondary visible"
                                             onclick="AddItem(this)">
-                                        افزودن
+                                        Add
                                     </button>
                                 </th>
                             </tr>
@@ -93,12 +93,12 @@
                                 <tr>
                                     <td>
                                         <select class="form-control" asp-for="@Model.Invoice.Items[i].ProductId" asp-items="@Model.Products">
-                                            <option value="0">نام کالا</option>
+                                            <option value="0">Product name</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select class="form-control" asp-for="@Model.Invoice.Items[i].UnitId" asp-items="@Model.Units">
-                                            <option value="0">نام واحد </option>
+                                            <option value="0">Unit name </option>
                                         </select>
                                     </td>
                                     <td>
@@ -129,10 +129,10 @@
 
                 <div class="col-12 btn-group">
                     <div class="col-6 form-group text-right p-2">
-                        <a asp-page="./Index" class="btn btn-secondary">&nbsp;بازگشت&nbsp;</a>
+                        <a asp-page="./Index" class="btn btn-secondary">Return</a>
                     </div>
                     <div class="col-6 form-group text-left p-2">
-                        <input type="submit" value="بروزرسانی" class="btn btn-primary">
+                        <input type="submit" value="Update" class="btn btn-primary">
                     </div>
                 </div>
             </div>
