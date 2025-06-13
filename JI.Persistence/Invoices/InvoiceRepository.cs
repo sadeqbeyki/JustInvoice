@@ -1,6 +1,8 @@
 ﻿using InvoiceFramework;
 using JI.ApplicationContracts.Invoice;
 using JI.Domain.InvoiceAgg;
+using JI.Domain.ProductAgg;
+using JI.Domain.UnitAgg;
 using JI.DomainContracts.Invoices;
 using JI.Persistence.Common;
 using Microsoft.EntityFrameworkCore;
@@ -68,4 +70,20 @@ public class InvoiceRepository : BaseRepository<long, Invoice>, IInvoiceReposito
         _invoiceContext.Items.AddRange(invoice.Items);
         _invoiceContext.SaveChanges();
     }
+    //public void AddEdit(Invoice invoice)
+    //{
+    //    _invoiceContext.Attach(invoice);
+    //    _invoiceContext.Entry(invoice).State = EntityState.Modified;
+
+    //    foreach (var item in invoice.Items)
+    //    {
+    //        // اطمینان از این که کلید خارجی درست attach شده و EF آن را به عنوان موجود می‌شناسد
+    //        _invoiceContext.Attach(new Product { Id = item.ProductId });
+    //        _invoiceContext.Attach(new Unit { Id = item.UnitId });
+
+    //        _invoiceContext.Items.Add(item);
+    //    }
+
+    //    _invoiceContext.SaveChanges();
+    //}
 }

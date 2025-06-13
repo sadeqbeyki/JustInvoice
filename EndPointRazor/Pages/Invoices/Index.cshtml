@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Product invoice";
+}
+
+<div class="container py-4">
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        </div>
+        <div class="col-auto">
+            <a asp-page="./Create" class="btn btn-success">
+                <i class="fa fa-plus me-1"></i> Create Invoice
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table id="datatable" class="table table-hover table-bordered align-middle text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in Model.Invoices)
+            {
+
+                <tr>
+                    <td>@invoice.Id</td>
+                    <td>
+                        <img src="~/Images/@invoice.PhotoUrl" alt="" class="avatar" />
+                    </td>
+                    <td>@invoice.Name</td>
+                    <td>@invoice.CreationDate</td>
+                    <td>@invoice.Description</td>
+                    <td>@invoice.Total</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@invoice.Id"
+                           class="btn btn-sm btn-info">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        |
+                        <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@invoice.Id"
+                           class="btn btn-sm btn-primary ml-1">Details</a>
+                        |
+                        <a href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id })"
+                           class="btn btn-sm btn-danger ml-1">
+                            <i class="fa fa-remove"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
+}

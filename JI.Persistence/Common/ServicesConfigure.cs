@@ -16,7 +16,7 @@ namespace JI.Persistence.Common;
 
 public class ServicesConfigure
 {
-    public static void Configure(IServiceCollection services, string connectionString)
+    public static void Configure(IServiceCollection services, string? connectionString)
     {
         services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<IGetAllProductsQuery, GetAllProductsQuery>();
