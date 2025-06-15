@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model IndexModel
 
 @{
@@ -71,6 +71,76 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#datatable').dataTable();
+        });
+    </script>
+}
+ *@
+
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Product invoice";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">@ViewData["Title"]</h4>
+        <a asp-page="./Create" class="btn btn-success">
+            <i class="fa fa-plus me-1"></i> Create Invoice
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table id="datatable" class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var invoice in Model.Invoices)
+                {
+                    <tr>
+                        <td>@invoice.Id</td>
+                        <td>
+                            <img src="~/Images/@invoice.PhotoUrl" alt="Invoice Image" class="img-thumbnail rounded-circle" style="width: 48px; height: 48px; object-fit: cover;" />
+                        </td>
+                        <td>@invoice.Name</td>
+                        <td>@invoice.CreationDate</td>
+                        <td class="text-truncate" style="max-width: 200px;">@invoice.Description</td>
+                        <td>@invoice.Total.ToString("N0")</td>
+                        <td>
+                            <div class="d-flex flex-wrap justify-content-center gap-1">
+                                <a asp-page="./Edit" asp-route-id="@invoice.Id" class="btn btn-sm btn-outline-info">
+                                    <i class="fa fa-edit me-1"></i> Edit
+                                </a>
+                                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@invoice.Id" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa fa-eye me-1"></i> View
+                                </a>
+                                <a href="#showmodal=@Url.Page("./Index", "Delete", new { id = invoice.Id })" class="btn btn-sm btn-outline-danger">
+                                    <i class="fa fa-trash me-1"></i> Delete
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').DataTable();
         });
     </script>
 }
