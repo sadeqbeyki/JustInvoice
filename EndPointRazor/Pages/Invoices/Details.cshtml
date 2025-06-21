@@ -4,96 +4,83 @@
     ViewData["Title"] = "Invoice detatils";
 }
 
-<div class="col-11 mx-auto pt-0 p-0">
-    <div class="card">
-        <div class="card-header bg-success text-white" style="height:53px;">
-            <h3 class="panel-title"> Invoice detatils @Model.Invoice.Name</h3>
+<div class="container py-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h3 class="card-title"> Invoice detatils @Model.Invoice.Name</h3>
         </div>
         <form enctype="multipart/form-data" method="post">
-            <div class="container-fluid btn-group">
-                <div class="col-8">
-                    <div class="row">
+            <div class="row g-3 p-4">
+                <div class="col-lg-8">
+                    <div class="row g-3">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Invoice.Name" class="control-label">Name</label>
-                                <input asp-for="Invoice.Name" class="form-control-plaintext" readonly />
-                            </div>
+                            <label asp-for="Invoice.Name" class="control-label">Name</label>
+                            <input asp-for="Invoice.Name" class="form-control-plaintext" readonly />
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Invoice.CreationDate" class="control-label">Creation date</label>
-                                <input asp-for="Invoice.CreationDate" class="form-control-plaintext persianDateInput" readonly>
-                            </div>
+                            <label asp-for="Invoice.CreationDate" class="control-label">Creation date</label>
+                            <input asp-for="Invoice.CreationDate" class="form-control-plaintext persianDateInput" readonly>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Invoice.Total" class="control-label">Total</label>
-                                <input asp-for="Invoice.Total" class="form-control-plaintext" readonly>
-                            </div>
+                            <label asp-for="Invoice.Total" class="control-label">Total</label>
+                            <input asp-for="Invoice.Total" class="form-control-plaintext" readonly>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group no-margin">
-                                <label asp-for="Invoice.Description" class="control-label">Description </label>
-                                <textarea asp-for="Invoice.Description" class="form-control-plaintext autogrow"
-                                          style="overflow: hidden; word-wrap: break-word; resize: both; height: 50px;" readonly></textarea>
-                            </div>
+                            <label asp-for="Invoice.Description" class="control-label">Description </label>
+                            <textarea asp-for="Invoice.Description" class="form-control-plaintext autogrow"
+                                      style="overflow: hidden; word-wrap: break-word; resize: both; height: 50px;" readonly></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="col-md-12 form-group justify-content-center align-middle">
-                        <img src="~/Images/@Model.Invoice.PhotoUrl" class="img-fluid"
-                             width="250" height="250" style="border:1px; margin-top:20px;" />
-                    </div>
+                <div class="col-lg-4 text-center">
+                    <img src="~/Images/@Model.Invoice.PhotoUrl" alt="Invoice Image"
+                         class="img-thumbnail mt-3" style="max-width: 250px; height: auto;">
                 </div>
+
             </div>
 
-                <div class="container col-12px">
-                    <div class="col-md-12 p-0 m-0 bg-light">
-                        <table id="ExpTable" class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Product name</th>
-                                    <th>Unit</th>
-                                    <th>Price</th>
-                                    <th>Count</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.Invoice.Items)
-                                {
-                                    <tr>
-                                        <td>
-                                            <input asp-for="@item.Product" class="form-control-plaintext" readonly />
-                                        </td>
-                                        <td>
-                                            <input asp-for="@item.Unit" class="form-control-plaintext" readonly />
-                                        </td>
-                                        <td>
-                                            <input asp-for="@item.Price" class="form-control-plaintext" readonly />
-                                        </td>
-                                        <td>
-                                            <input asp-for="@item.Count" class="form-control-plaintext" readonly />
-                                        </td>
-                                        <td>
-                                            <input asp-for="@item.Sum" class="form-control-plaintext" readonly />
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="table-responsive px-4 pb-3">
+                <table id="ExpTable" class="table table-bordered table-sm align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product name</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Count</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Invoice.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <input asp-for="@item.Product" class="form-control-plaintext" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@item.Unit" class="form-control-plaintext" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@item.Price" class="form-control-plaintext" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@item.Count" class="form-control-plaintext" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@item.Sum" class="form-control-plaintext" readonly />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
-                    <input type="hidden" id="hdnLastIndex" value="0" />
+            <input type="hidden" id="hdnLastIndex" value="0" />
 
-                    <div class="col-12 btn-group">
-                        <div class="col-6 form-group text-right p-2">
-                            <a asp-page="./Index" class="btn btn-secondary">Return</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-between px-4 pb-4">
+                <a asp-page="./Index" class="btn btn-secondary">Back</a>
+            </div>
         </form>
     </div>
 </div>
